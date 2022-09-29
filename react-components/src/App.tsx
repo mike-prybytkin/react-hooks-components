@@ -1,25 +1,15 @@
+import AboutUs from 'pages/AboutUs/AboutUs';
+import Page404 from 'pages/404/404';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/about" element={<AboutUs />} />
+      <Route path="/404" element={<Page404 />} />
+    </Routes>
   );
 }
 
