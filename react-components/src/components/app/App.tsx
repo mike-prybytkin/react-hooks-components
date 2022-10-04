@@ -1,16 +1,16 @@
 import AboutUs from 'pages/AboutUs/AboutUs';
 import Page404 from 'pages/404/404';
 import Main from 'pages/main/main';
-import NavBar from 'components/navbar/navBar';
+import Header from 'components/header/header';
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import './App.scss';
+import './style.scss';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <Header />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<AboutUs />} />

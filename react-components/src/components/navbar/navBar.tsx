@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className="navbar">
+      <ul className="navbar__items">
+        <li className="navbar__item">
           <Link to="/">Home</Link>
         </li>
-        <li>
+        <li className="navbar__item">
           <Link to="/about">About</Link>
         </li>
       </ul>
