@@ -1,12 +1,14 @@
 import React from 'react';
-import NavBar from 'components/navbar/navbar';
+import NavBar from 'components/nav-bar/nav-bar';
 
-function Header() {
-  return (
-    <header className="header">
-      <NavBar />
-    </header>
-  );
+class Header extends React.Component {
+  render() {
+    return (
+      <header className="header">
+        <NavBar />
+      </header>
+    );
+  }
 }
 
 export default Header;

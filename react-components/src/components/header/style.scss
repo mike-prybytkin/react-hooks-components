@@ -1,5 +1,4 @@
-@import "../../share/style.scss";
-
 .header {
   background: $backgroundHeaderColor;
+  @include flex(space-between);
 }
