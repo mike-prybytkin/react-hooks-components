@@ -16,5 +16,6 @@ code {
 }
 
 .main {
-  @include flex;
+  @include flex(center, center);
+  flex-direction: column;
 }
