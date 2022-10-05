@@ -7,7 +7,7 @@ class NavBar extends React.Component {
       <nav className="navbar">
         <ul className="navbar__items">
           <li className="navbar__item">
-            <NavLink className="navbar__link" to="/">
+            <NavLink className="navbar__link" to="/" end>
               Home
             </NavLink>
           </li>
