@@ -3,26 +3,29 @@ import Card from 'components/card/card';
 import React from 'react';
 import { ICard } from 'share/types';
 
-class CreateCards extends React.Component<unknown, { promise: ICard[] }> {
+class CreateCards extends React.Component<unknown, { data: ICard[]; isLoading: boolean }> {
   constructor(props: ICard[]) {
     super(props);
     this.state = {
-      promise: [],
+      data: [],
+      isLoading: false,
     };
   }
 
-  async fetchCards() {
-    const response = await axios.get<ICard[]>('https://fakestoreapi.com/products?limit=10');
+  async componentDidMount() {
+    this.setState({ isLoading: true });
+    const response = await axios.get<ICard[]>('https://fakestoreapi.com/products?limit=20');
     this.setState({
-      promise: response.data,
+      data: response.data,
+      isLoading: false,
     });
   }
 
   render() {
-    this.fetchCards();
     return (
       <React.Fragment>
-        {this.state.promise.map((card: ICard) => (
+        {this.state.isLoading && <p>Loading ...</p>}
+        {this.state.data.map((card: ICard) => (
           <Card {...card} key={card.id} />
         ))}
       </React.Fragment>
