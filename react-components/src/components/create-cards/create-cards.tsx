@@ -1,5 +1,5 @@
-import Card from 'components/card/card';
 import React from 'react';
+import Card from 'components/card/card';
 import { ICard } from 'share/types';
 
 class CreateCards extends React.Component<unknown, { data: ICard[]; isLoading: boolean }> {

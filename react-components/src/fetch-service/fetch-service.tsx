@@ -1,6 +1,6 @@
+import React from 'react';
 import axios from 'axios';
 import LiveSearch from 'components/live-search/live-search';
-import React from 'react';
 import { ICard } from 'share/types';
 
 class FetchService extends React.Component<unknown, { data: ICard[]; isLoading: boolean }> {

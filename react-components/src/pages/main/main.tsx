@@ -1,5 +1,5 @@
-import CreateCards from 'components/create-cards/create-cards';
 import React from 'react';
+import CreateCards from 'components/create-cards/create-cards';
 
 class Main extends React.Component {
   render() {

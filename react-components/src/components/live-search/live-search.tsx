@@ -1,13 +1,13 @@
-import CreateCards from 'components/create-cards/create-cards';
 import React from 'react';
+import CreateCards from 'components/create-cards/create-cards';
 import { ICard } from 'share/types';
 import { ILiveSearchState } from './types';
-import { IProps } from './types';
+import { ILiveSearchProps } from './types';
 
-class LiveSearch extends React.Component<IProps, ILiveSearchState> {
+class LiveSearch extends React.Component<ILiveSearchProps, ILiveSearchState> {
   filterData: ICard[];
 
-  constructor(props: IProps) {
+  constructor(props: ILiveSearchProps) {
     super(props);
     this.filterData = [];
     this.state = {
@@ -22,7 +22,7 @@ class LiveSearch extends React.Component<IProps, ILiveSearchState> {
   };
 
   setLocalStorage(searchFieldText: string) {
-    localStorage.setItem('searchValue', searchFieldText || '');
+    localStorage.setItem('searchValue', searchFieldText);
   }
 
   getFilterData() {

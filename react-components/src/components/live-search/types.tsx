@@ -4,7 +4,7 @@ export interface ILiveSearchState {
   value: string;
 }
 
-export interface IProps {
+export interface ILiveSearchProps {
   data: ICard[];
   isLoading: boolean;
 }

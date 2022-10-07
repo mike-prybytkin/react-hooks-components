@@ -1,9 +1,9 @@
+import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import AboutUs from 'pages/about-us/about-us';
 import Page404 from 'pages/404/404';
 import Main from 'pages/main/main';
 import Header from 'components/header/header';
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
 
 class App extends React.Component {
   render() {

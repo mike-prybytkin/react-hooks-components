@@ -1,4 +1,4 @@
-import { ICard } from '../../share/types';
+import { ICard } from '../share/types';
 
 export const cards: ICard[] = [
   {
