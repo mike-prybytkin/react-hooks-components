@@ -1,10 +1,19 @@
+import CreateCards from 'components/create-cards/create-cards';
 import React from 'react';
+import { ICard } from 'share/types';
 import { ILiveSearchState } from './types';
+import { IProps } from './types';
 
-class LiveSearch extends React.Component<unknown, ILiveSearchState> {
-  state = {
-    value: '' || localStorage.getItem('searchValue') || undefined,
-  };
+class LiveSearch extends React.Component<IProps, ILiveSearchState> {
+  filterData: ICard[];
+
+  constructor(props: IProps) {
+    super(props);
+    this.filterData = [];
+    this.state = {
+      value: localStorage.getItem('searchValue') ?? '',
+    };
+  }
 
   searchTextChange = (event: React.ChangeEvent) => {
     if (event.target) {
@@ -12,24 +21,34 @@ class LiveSearch extends React.Component<unknown, ILiveSearchState> {
     }
   };
 
-  setLocalStorage(searchFieldText: string | undefined) {
+  setLocalStorage(searchFieldText: string) {
     localStorage.setItem('searchValue', searchFieldText || '');
   }
 
-  render() {
-    this.setLocalStorage(this.state.value);
+  getFilterData() {
+    this.filterData = this.props.data.filter((item: ICard) => {
+      return item.title.toLowerCase().includes(this.state.value?.toLowerCase());
+    });
+  }
 
+  render() {
+    this.getFilterData();
+    this.setLocalStorage(this.state.value);
     return (
-      <div className="search-container">
-        <form className="search-form">
-          <input
-            className="search"
-            placeholder="&#128269; Search..."
-            value={this.state.value}
-            onChange={this.searchTextChange}
-          />
-        </form>
-      </div>
+      <React.Fragment>
+        <CreateCards {...this.filterData} />
+        <div className="search-container">
+          <form className="search-form">
+            <span>&#128269;</span>
+            <input
+              className="search"
+              placeholder="Search..."
+              value={this.state.value}
+              onChange={this.searchTextChange}
+            />
+          </form>
+        </div>
+      </React.Fragment>
     );
   }
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import NavBar from 'components/nav-bar/nav-bar';
-import LiveSearch from 'components/live-search/live-search';
+import FetchService from 'fetch-service/fetch-service';
 
 class Header extends React.Component {
   render() {
     return (
       <header className="header">
         <NavBar />
-        <LiveSearch />
+        <FetchService />
       </header>
     );
   }
