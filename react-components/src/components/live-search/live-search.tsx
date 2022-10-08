@@ -1,42 +1,58 @@
 import React from 'react';
-import CreateCards from 'components/create-cards/create-cards';
 import { ICard } from 'share/types';
 import { ILiveSearchState } from './types';
 import { ILiveSearchProps } from './types';
 
 class LiveSearch extends React.Component<ILiveSearchProps, ILiveSearchState> {
-  filterData: ICard[];
-
   constructor(props: ILiveSearchProps) {
     super(props);
-    this.filterData = [];
     this.state = {
-      value: localStorage.getItem('searchValue') ?? '',
+      value: '',
     };
   }
 
-  searchTextChange = (event: React.ChangeEvent) => {
+  searchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target) {
-      this.setState({ value: (event.target as HTMLInputElement).value });
+      this.setState({ value: event.target.value });
     }
   };
+
+  handleFilterCards(filterValue: string) {
+    return this.props.cards.filter((item: ICard) => {
+      return item.title.toLowerCase().includes(filterValue.toLowerCase().trim());
+    });
+  }
 
   setLocalStorage(searchFieldText: string) {
     localStorage.setItem('searchValue', searchFieldText);
   }
 
-  getFilterData() {
-    this.filterData = this.props.data.filter((item: ICard) => {
-      return item.title.toLowerCase().includes(this.state.value?.toLowerCase());
+  componentDidMount(): void {
+    this.setState({
+      value: localStorage.getItem('searchValue') ?? '',
     });
   }
 
+  componentDidUpdate(
+    prevProps: Readonly<ILiveSearchProps>,
+    prevState: Readonly<ILiveSearchState>
+  ): void {
+    console.log(prevState.value);
+    console.log(this.state.value);
+
+    if (prevProps.cards !== this.props.cards) {
+      this.props.onSearch(this.handleFilterCards(this.state.value));
+    }
+
+    if (prevState.value !== this.state.value) {
+      this.props.onSearch(this.handleFilterCards(this.state.value));
+      this.setLocalStorage(this.state.value);
+    }
+  }
+
   render() {
-    this.getFilterData();
-    this.setLocalStorage(this.state.value);
     return (
       <React.Fragment>
-        <CreateCards {...this.filterData} />
         <div className="search-container">
           <form className="search-form">
             <span>&#128269;</span>

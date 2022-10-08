@@ -1,13 +1,23 @@
 import React from 'react';
 import NavBar from 'components/nav-bar/nav-bar';
-import FetchService from 'fetch-service/fetch-service';
+import LiveSearch from 'components/live-search/live-search';
+import { ICard } from 'share/types';
 
-class Header extends React.Component {
+type HeaderProps = {
+  cards: ICard[];
+  onSearch: (cards: ICard[]) => void;
+};
+
+class Header extends React.Component<HeaderProps> {
+  constructor(props: HeaderProps) {
+    super(props);
+  }
+
   render() {
     return (
       <header className="header">
         <NavBar />
-        <FetchService />
+        <LiveSearch cards={this.props.cards} onSearch={this.props.onSearch} />
       </header>
     );
   }

@@ -5,6 +5,6 @@ export interface ILiveSearchState {
 }
 
 export interface ILiveSearchProps {
-  data: ICard[];
-  isLoading: boolean;
+  cards: ICard[];
+  onSearch: (cards: ICard[]) => void;
 }
