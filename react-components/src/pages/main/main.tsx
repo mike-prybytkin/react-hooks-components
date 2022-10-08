@@ -11,7 +11,7 @@ class Main extends React.Component<MainProps> {
   render() {
     return (
       <React.Fragment>
-        <h1>Главная</h1>
+        <h1>Welcome to our store!</h1>
         <div className="cards-wrapper">
           <CardList cards={this.props.cards} />
         </div>

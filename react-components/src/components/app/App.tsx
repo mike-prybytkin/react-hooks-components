@@ -25,7 +25,6 @@ class App extends React.Component<unknown, IAppState> {
     this.setState({
       data: response.data,
       isLoading: false,
-      currentData: response.data,
     });
   }
 
@@ -36,7 +35,6 @@ class App extends React.Component<unknown, IAppState> {
   }
 
   render() {
-    console.log({ state: this.state });
     return (
       <div className="App">
         <Header cards={this.state.data} onSearch={this.onSearch} />
@@ -47,6 +45,10 @@ class App extends React.Component<unknown, IAppState> {
             <Route path="/notFound" element={<Page404 />} />
             <Route path="/*" element={<Navigate to="/notFound" />} />
           </Routes>
+          {this.state.isLoading && <p className="main__message_loading">Loading ...</p>}
+          {this.state.currentData.length === 0 && !this.state.isLoading && (
+            <p className="main__message_not-found">Sorry, item not found...</p>
+          )}
         </main>
       </div>
     );

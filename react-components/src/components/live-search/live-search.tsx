@@ -37,9 +37,6 @@ class LiveSearch extends React.Component<ILiveSearchProps, ILiveSearchState> {
     prevProps: Readonly<ILiveSearchProps>,
     prevState: Readonly<ILiveSearchState>
   ): void {
-    console.log(prevState.value);
-    console.log(this.state.value);
-
     if (prevProps.cards !== this.props.cards) {
       this.props.onSearch(this.handleFilterCards(this.state.value));
     }
