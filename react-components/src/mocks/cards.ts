@@ -1,6 +1,6 @@
 import { ICard } from '../share/types';
 
-export const cards: ICard[] = [
+export const mockCards: ICard[] = [
   {
     id: 1,
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import axios from 'axios';
 import AboutUs from 'pages/about-us/about-us';
 import Page404 from 'pages/404/404';
 import Main from 'pages/main/main';
@@ -20,12 +19,20 @@ class App extends React.Component<unknown, IAppState> {
   }
 
   async componentDidMount() {
+    const URL = 'https://fakestoreapi.com/products?limit=20';
     this.setState({ isLoading: true });
-    const response = await axios.get<ICard[]>('https://fakestoreapi.com/products?limit=20');
-    this.setState({
-      data: response.data,
-      isLoading: false,
-    });
+    try {
+      await fetch(URL)
+        .then((res) => res.json())
+        .then((json: ICard[]) =>
+          this.setState({
+            data: json,
+            isLoading: false,
+          })
+        );
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   onSearch(cards: ICard[]) {
