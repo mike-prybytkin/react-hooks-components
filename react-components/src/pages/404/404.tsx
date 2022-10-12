@@ -5,9 +5,9 @@ class Page404 extends React.Component {
   render() {
     return (
       <div className="main-container">
-        <h1>Ошибка 404!</h1>
+        <h1>Error 404!</h1>
         <Link className="back-to-home-link" to="/">
-          На домашнюю страницу
+          Back to home page
         </Link>
       </div>
     );
