@@ -22,14 +22,12 @@ class App extends React.Component<unknown, IAppState> {
     const URL = 'https://fakestoreapi.com/products?limit=20';
     this.setState({ isLoading: true });
     try {
-      await fetch(URL)
-        .then((res) => res.json())
-        .then((json: ICard[]) =>
-          this.setState({
-            data: json,
-            isLoading: false,
-          })
-        );
+      const response = await fetch(URL);
+      const cards: ICard[] = await response.json();
+      this.setState({
+        data: cards,
+        isLoading: false,
+      });
     } catch (error) {
       console.error(error);
     }

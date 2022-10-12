@@ -12,9 +12,7 @@ class Main extends React.Component<MainProps> {
     return (
       <React.Fragment>
         <h1>Welcome to our store!</h1>
-        <div className="cards-wrapper">
-          <CardList cards={this.props.cards} />
-        </div>
+        <CardList cards={this.props.cards} />
       </React.Fragment>
     );
   }

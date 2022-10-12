@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Card from 'components/card/card';
-import { ICard } from 'share/types';
-
-type CardListProps = { cards: ICard[] };
+import { CardListProps } from './types';
 
 export class CardList extends Component<CardListProps> {
   constructor(props: CardListProps) {
@@ -14,7 +12,7 @@ export class CardList extends Component<CardListProps> {
   }
 
   render() {
-    return <React.Fragment>{this.renderCards()}</React.Fragment>;
+    return <div className="cards-wrapper">{this.renderCards()}</div>;
   }
 }
 
