@@ -1,22 +1,17 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import App from './components/app/app';
-import ReactDOM from 'react-dom';
 
-jest.mock('react-dom', () => ({ render: jest.fn() }));
-
-describe('Testing Application Root', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
-    global.document.getElementById = (id) => id === 'root' && div;
-    expect(ReactDOM.render).toHaveBeenCalledWith(<App />, div);
-  });
-
-  it('should render the app inside div which has root id', () => {
-    expect(global.document.getElementById('root')).toBeDefined();
-  });
-
-  it('should render App component', () => {
-    expect(App).toBeDefined();
+describe('Testing Application', () => {
+  it('renders correctly when there are no items', () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
