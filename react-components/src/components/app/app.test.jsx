@@ -1,7 +1,14 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './app';
+import { mockCards } from '../../mocks/cards';
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ mockCards }),
+  })
+);
 
 describe('App', () => {
   it('renders links', () => {
@@ -16,7 +23,17 @@ describe('App', () => {
     expect(linkHome).toBeInTheDocument();
     expect(linkAbout).toBeInTheDocument();
   });
-});
 
-// expect(screen.queryByText(/$/i)).not.toBeInTheDocument();
-// expect(await screen.findByText(/$/i)).toBeInTheDocument();
+  it('renders hello correctly', async () => {
+    const { findByTestId, asFragment } = render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+
+    const appNode = await findByTestId('app');
+    expect(appNode.children).toHaveLength(2);
+    expect(asFragment()).toMatchSnapshot();
+    expect(await screen.findByText(/welcome/i)).toBeInTheDocument();
+  });
+});

@@ -3,6 +3,7 @@
 exports[`Testing Application renders correctly when there are no items 1`] = `
 <div
   className="App"
+  data-testid="app"
 >
   <header
     className="header"

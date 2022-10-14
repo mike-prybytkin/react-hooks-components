@@ -14,6 +14,7 @@ class App extends React.Component<unknown, IAppState> {
       data: [],
       isLoading: false,
       currentData: [],
+      fetchError: '',
     };
     this.onSearch = this.onSearch.bind(this);
   }
@@ -29,7 +30,9 @@ class App extends React.Component<unknown, IAppState> {
         isLoading: false,
       });
     } catch (error) {
-      console.error(error);
+      this.setState({
+        fetchError: error,
+      });
     }
   }
 
@@ -41,7 +44,7 @@ class App extends React.Component<unknown, IAppState> {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" data-testid="app">
         <Header cards={this.state.data} onSearch={this.onSearch} />
         <main className="main">
           <Routes>
