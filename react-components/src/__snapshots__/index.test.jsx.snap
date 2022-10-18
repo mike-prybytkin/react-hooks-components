@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Application renders correctly when there are no items 1`] = `
+exports[`Testing Application should renders correctly application 1`] = `
 <div
   className="App"
   data-testid="app"

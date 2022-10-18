@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Page404Props } from './types';
 
-class Page404 extends React.Component {
+class Page404 extends React.Component<Page404Props> {
   render() {
     return (
       <div className="main-container">
-        <h1>Error 404!</h1>
+        <h1>{this.props.heading}</h1>
         <Link className="back-to-home-link" to="/">
-          Back to home page
+          {this.props.backToHomelinkText}
         </Link>
       </div>
     );

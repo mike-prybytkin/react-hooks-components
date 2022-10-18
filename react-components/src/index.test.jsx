@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import App from './components/app/app';
 
 describe('Testing Application', () => {
-  it('renders correctly when there are no items', () => {
+  it('should renders correctly application', () => {
     const tree = renderer
       .create(
         <BrowserRouter>

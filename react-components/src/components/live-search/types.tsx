@@ -7,4 +7,5 @@ export interface ILiveSearchState {
 export interface ILiveSearchProps {
   cards: ICard[];
   onSearch: (cards: ICard[]) => void;
+  placeholderText: string;
 }

@@ -2,24 +2,27 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import CardList from './card-list';
 import { mockCards } from '../../mocks/cards';
+import mockText from '../../mocks/text';
 
-describe('Card list', () => {
-  it('render without data', () => {
-    render(<CardList cards={[]} />);
+const setUp = (props) => render(<CardList cards={props} />);
+
+describe('Card list component', () => {
+  it('should render card list without data', () => {
+    setUp([]);
 
     expect(screen.queryByRole('heading')).toBeNull();
   });
 
-  it('render cards', () => {
-    render(<CardList cards={mockCards} />);
+  it('should correctly render headings', () => {
+    setUp(mockCards);
 
-    expect(screen.getByText(/Fjallraven/i)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(mockText.cardTitle, 'i'))).toBeInTheDocument();
     expect(screen.queryAllByRole('heading', { level: 3 })).toMatchSnapshot();
   });
 
-  it('List snapshot', () => {
-    const list = render(<CardList cards={mockCards} />);
+  it('create card list snapshot with data', () => {
+    const { asFragment } = setUp(mockCards);
 
-    expect(list).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

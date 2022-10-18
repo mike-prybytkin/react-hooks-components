@@ -1,8 +1,6 @@
 import React from 'react';
 import CardList from 'components/card-list/card-list';
-import { ICard } from 'share/types';
-
-type MainProps = { cards: ICard[] };
+import { MainProps } from './types';
 
 class Main extends React.Component<MainProps> {
   constructor(props: MainProps) {
@@ -11,7 +9,7 @@ class Main extends React.Component<MainProps> {
   render() {
     return (
       <React.Fragment>
-        <h1>Welcome to our store!</h1>
+        <h1>{this.props.heading}</h1>
         <CardList cards={this.props.cards} />
       </React.Fragment>
     );

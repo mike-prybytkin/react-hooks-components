@@ -55,7 +55,7 @@ class LiveSearch extends React.Component<ILiveSearchProps, ILiveSearchState> {
             <span>&#128269;</span>
             <input
               className="search"
-              placeholder="Search..."
+              placeholder={this.props.placeholderText}
               value={this.state.value}
               onChange={this.searchTextChange}
             />

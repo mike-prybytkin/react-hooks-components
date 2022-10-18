@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Card list component create card list snapshot with data 1`] = `
+exports[`Main component should correctly render heading and create snapshot 1`] = `
 <DocumentFragment>
+  <h1>
+    Welcome to our store!
+  </h1>
   <div
     class="cards-wrapper"
   >
@@ -55,19 +58,4 @@ exports[`Card list component create card list snapshot with data 1`] = `
     </div>
   </div>
 </DocumentFragment>
-`;
-
-exports[`Card list component should correctly render headings 1`] = `
-Array [
-  <h3
-    class="card__title"
-  >
-    Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops
-  </h3>,
-  <h3
-    class="card__title"
-  >
-    Mens Casual Premium Slim Fit T-Shirts 
-  </h3>,
-]
 `;

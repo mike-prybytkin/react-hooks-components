@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders hello correctly 1`] = `
+exports[`App should correctly render the heading of the homepage 1`] = `
 <DocumentFragment>
   <div
     class="App"

@@ -6,6 +6,7 @@ import Main from 'pages/main/main';
 import Header from 'components/header/header';
 import { ICard } from 'share/types';
 import { IAppState } from './types';
+import mockText from 'mocks/text';
 
 class App extends React.Component<unknown, IAppState> {
   constructor(props: unknown) {
@@ -48,14 +49,30 @@ class App extends React.Component<unknown, IAppState> {
         <Header cards={this.state.data} onSearch={this.onSearch} />
         <main className="main">
           <Routes>
-            <Route path="/" element={<Main cards={this.state.currentData} />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/notFound" element={<Page404 />} />
+            <Route
+              path="/"
+              element={<Main cards={this.state.currentData} heading={mockText.headingMain} />}
+            />
+            <Route
+              path="/about"
+              element={
+                <AboutUs heading={mockText.headingAboutUs} message={mockText.pageNotReady} />
+              }
+            />
+            <Route
+              path="/notFound"
+              element={
+                <Page404
+                  heading={mockText.heading404}
+                  backToHomelinkText={mockText.linkBackToHome}
+                />
+              }
+            />
             <Route path="/*" element={<Navigate to="/notFound" />} />
           </Routes>
-          {this.state.isLoading && <p className="main__message_loading">Loading ...</p>}
+          {this.state.isLoading && <p className="main__message_loading">{mockText.loading}</p>}
           {this.state.currentData.length === 0 && !this.state.isLoading && (
-            <p className="main__message_not-found">Sorry, item not found...</p>
+            <p className="main__message_not-found">{mockText.itemNotFound}</p>
           )}
         </main>
       </div>
