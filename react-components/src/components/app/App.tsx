@@ -20,7 +20,7 @@ class App extends React.Component<unknown, IAppState> {
     this.onSearch = this.onSearch.bind(this);
   }
 
-  async componentDidMount() {
+  async fetchCards() {
     const URL = 'https://fakestoreapi.com/products?limit=20';
     this.setState({ isLoading: true });
     try {
@@ -35,6 +35,10 @@ class App extends React.Component<unknown, IAppState> {
         fetchError: error,
       });
     }
+  }
+
+  componentDidMount() {
+    this.fetchCards();
   }
 
   onSearch(cards: ICard[]) {
