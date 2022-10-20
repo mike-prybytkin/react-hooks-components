@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Main component should correctly render heading and create snapshot 1`] = `
+exports[`Main component should create snapshot 1`] = `
 <DocumentFragment>
   <h1>
     Welcome to our store!

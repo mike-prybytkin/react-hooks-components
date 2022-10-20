@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Live Search component should correctly render input and create snapshot 1`] = `
+exports[`Live Search component should create snapshot 1`] = `
 <DocumentFragment>
   <div
     class="search-container"

@@ -5,14 +5,18 @@ import Main from './main';
 import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
 
-describe('Main component', () => {
-  it('should correctly render heading and create snapshot', () => {
-    const { asFragment } = render(<Main cards={mockCards} heading={mockText.headingMain} />, {
-      wrapper: BrowserRouter,
-    });
-    const mainHeading = screen.getByText(new RegExp(mockText.headingMain, 'i'));
+const setUp = () =>
+  render(<Main cards={mockCards} heading={mockText.headingMain} />, { wrapper: BrowserRouter });
 
+describe('Main component', () => {
+  it('should correctly render heading', () => {
+    setUp();
+    const mainHeading = screen.getByText(new RegExp(mockText.headingMain, 'i'));
     expect(mainHeading).toBeInTheDocument();
+  });
+
+  it('should create snapshot', () => {
+    const { asFragment } = setUp();
     expect(asFragment()).toMatchSnapshot();
   });
 });

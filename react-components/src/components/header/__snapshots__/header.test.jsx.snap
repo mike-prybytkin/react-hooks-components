@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header component should render links and create snapshop 1`] = `
+exports[`Header component should create snapshot 1`] = `
 <DocumentFragment>
   <header
     class="header"

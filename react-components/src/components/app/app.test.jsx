@@ -14,21 +14,19 @@ global.fetch = jest.fn(() =>
 const setUp = () => render(<App />, { wrapper: BrowserRouter });
 
 describe('App', () => {
-  it('should render links', () => {
-    setUp();
-    const linkHome = screen.getByText(new RegExp(mockText.homeLink, 'i'));
-    const linkAbout = screen.getByText(new RegExp(mockText.aboutLink, 'i'));
-
-    expect(linkHome).toBeInTheDocument();
-    expect(linkAbout).toBeInTheDocument();
+  it('should correctly render app structure', async () => {
+    const { findByTestId } = setUp();
+    const appNode = await findByTestId('app');
+    expect(appNode.children).toHaveLength(2);
   });
 
   it('should correctly render the heading of the homepage', async () => {
-    const { findByTestId, asFragment } = setUp();
-
-    const appNode = await findByTestId('app');
-    expect(appNode.children).toHaveLength(2);
-    expect(asFragment()).toMatchSnapshot();
+    setUp();
     expect(await screen.findByText(new RegExp(mockText.headingMain, 'i'))).toBeInTheDocument();
+  });
+
+  it('should create snapshot', () => {
+    const { asFragment } = setUp();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
