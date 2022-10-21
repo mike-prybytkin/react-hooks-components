@@ -7,6 +7,7 @@ import Header from 'components/header/header';
 import { ICard } from 'share/types';
 import { IAppState } from './types';
 import mockText from 'mocks/text';
+import Form from 'pages/form/form';
 
 class App extends React.Component<unknown, IAppState> {
   constructor(props: unknown) {
@@ -63,6 +64,7 @@ class App extends React.Component<unknown, IAppState> {
                 <AboutUs heading={mockText.headingAboutUs} message={mockText.pageNotReady} />
               }
             />
+            <Route path="/form" element={<Form />} />
             <Route
               path="/notFound"
               element={
