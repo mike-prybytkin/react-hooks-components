@@ -64,7 +64,7 @@ class App extends React.Component<unknown, IAppState> {
                 <AboutUs heading={mockText.headingAboutUs} message={mockText.pageNotReady} />
               }
             />
-            <Route path="/form" element={<Form />} />
+            <Route path="/form" element={<Form heading={mockText.headingForm} />} />
             <Route
               path="/notFound"
               element={

@@ -10,6 +10,7 @@ const mockText = {
   pageNotReady: 'Sorry, page not ready yet...',
   loading: 'Loading ...',
   itemNotFound: 'Sorry, item not found...',
+  headingForm: 'Create User!',
 };
 
 export default mockText;
