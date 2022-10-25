@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 import TextInput from 'components/form-elements/text-input/text-input';
 import DateInput from 'components/form-elements/date-input/date-input';
 import Select from 'components/form-elements/select/select';
+import Switcher from 'components/form-elements/switcher/switcher';
 
 export default class CreateUserForm extends Component<unknown> {
   nameTextInput!: HTMLInputElement | null;
   birthdayInput!: HTMLInputElement | null;
   selectSalary!: HTMLSelectElement | null;
+  switcherGender!: HTMLDivElement | null;
+
   inputNameRef: React.LegacyRef<HTMLInputElement> | undefined;
   inputDateRef: React.LegacyRef<HTMLInputElement> | undefined;
   selectSalaryRef: React.LegacyRef<HTMLSelectElement> | undefined;
+  SwitcherRef: React.LegacyRef<HTMLDivElement> | undefined;
 
   constructor(props: unknown) {
     super(props);
     this.inputNameRef = (element) => (this.nameTextInput = element);
     this.inputDateRef = (element) => (this.birthdayInput = element);
     this.selectSalaryRef = (element) => (this.selectSalary = element);
+    this.SwitcherRef = (element) => (this.switcherGender = element);
   }
 
   getUserName = () => {
@@ -42,11 +47,20 @@ export default class CreateUserForm extends Component<unknown> {
     }
   };
 
+  getUserGender = () => {
+    if (this.switcherGender) {
+      console.log(this.switcherGender);
+      // this.switcherGender.focus();
+      // this.switcherGender.value = '';
+    }
+  };
+
   handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     this.getUserName();
     this.getUserBirthday();
     this.getUserSalary();
+    this.getUserGender();
   };
 
   render() {
@@ -68,6 +82,12 @@ export default class CreateUserForm extends Component<unknown> {
           inputDateRef={this.inputDateRef}
         />
         <Select labelType="Your monthly income:" selectSalaryRef={this.selectSalaryRef} />
+        <Switcher
+          switcherType="Gender:"
+          optionOne="Male"
+          optionTwo="Femail"
+          SwitcherRef={this.SwitcherRef}
+        />
         <input className="create-user-button" type="submit" value="Create user" />
       </form>
     );
