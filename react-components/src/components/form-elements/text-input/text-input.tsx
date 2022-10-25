@@ -10,6 +10,9 @@ class TextInput extends Component<TextInputProps> {
           className="user-name__input"
           type="text"
           placeholder={this.props.placeholderText}
+          minLength={+this.props.minNameLength}
+          maxLength={+this.props.maxNameLength}
+          required={this.props.required}
           ref={this.props.inputNameRef}
         />
       </label>

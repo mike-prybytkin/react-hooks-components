@@ -1,6 +1,8 @@
 $mainColor: #235a9f;
 $lightColor: #ffffff;
 $backgroundHeaderColor: #092642;
+$backgroundCreateUserFormColor: #174276;
+$buttonColor: #80b9ee;
 
 @mixin flex ($justify: center, $align: stretch) {
   display: flex;

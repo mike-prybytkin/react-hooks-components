@@ -1,0 +1,10 @@
+.form-wrapper {
+  .form-content-header{
+    text-align: center
+  }
+
+  .form-content-wrapper {
+    width: 98vw;
+    @include flex(flex-start);
+  }
+}

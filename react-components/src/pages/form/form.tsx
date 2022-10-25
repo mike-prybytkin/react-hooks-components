@@ -5,10 +5,12 @@ import CreateUserForm from 'components/create-user-form/create-user-form';
 export default class Form extends Component<FormProps> {
   render() {
     return (
-      <React.Fragment>
-        <h1>{this.props.heading}</h1>
-        <CreateUserForm />
-      </React.Fragment>
+      <div className="form-wrapper">
+        <h1 className="form-content-header">{this.props.heading}</h1>
+        <div className="form-content-wrapper">
+          <CreateUserForm />
+        </div>
+      </div>
     );
   }
 }
