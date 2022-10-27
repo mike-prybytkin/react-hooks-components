@@ -3,17 +3,20 @@ import TextInput from 'components/form-elements/text-input/text-input';
 import DateInput from 'components/form-elements/date-input/date-input';
 import Select from 'components/form-elements/select/select';
 import Switcher from 'components/form-elements/switcher/switcher';
+import Checkbox from 'components/form-elements/checkbox/checkbox';
 
 export default class CreateUserForm extends Component<unknown> {
   nameTextInput!: HTMLInputElement | null;
   birthdayInput!: HTMLInputElement | null;
   selectSalary!: HTMLSelectElement | null;
   switcherGender!: HTMLInputElement | null;
+  checkMailing!: HTMLInputElement | null;
 
   inputNameRef: React.LegacyRef<HTMLInputElement> | undefined;
   inputDateRef: React.LegacyRef<HTMLInputElement> | undefined;
   selectSalaryRef: React.LegacyRef<HTMLSelectElement> | undefined;
-  SwitcherRef: React.LegacyRef<HTMLInputElement> | undefined;
+  switcherRef: React.LegacyRef<HTMLInputElement> | undefined;
+  checkMailingRef: React.LegacyRef<HTMLInputElement> | undefined;
 
   userGender: string;
 
@@ -22,8 +25,9 @@ export default class CreateUserForm extends Component<unknown> {
     this.inputNameRef = (element) => (this.nameTextInput = element);
     this.inputDateRef = (element) => (this.birthdayInput = element);
     this.selectSalaryRef = (element) => (this.selectSalary = element);
-    this.SwitcherRef = (element) => (this.switcherGender = element);
+    this.switcherRef = (element) => (this.switcherGender = element);
     this.userGender = '';
+    this.checkMailingRef = (element) => (this.checkMailing = element);
   }
 
   getUserName = () => {
@@ -59,12 +63,17 @@ export default class CreateUserForm extends Component<unknown> {
     console.log(this.userGender);
   };
 
+  checkReceiveMailing = () => {
+    console.log(this.checkMailing?.checked);
+  };
+
   handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     this.getUserName();
     this.getUserBirthday();
     this.getUserSalary();
     this.getUserGender();
+    this.checkReceiveMailing();
   };
 
   render() {
@@ -90,8 +99,9 @@ export default class CreateUserForm extends Component<unknown> {
           switcherType="Gender:"
           optionOne="Male"
           optionTwo="Femail"
-          SwitcherRef={this.SwitcherRef}
+          switcherRef={this.switcherRef}
         />
+        <Checkbox labelType="Receive mailing" checkMailingRef={this.checkMailingRef} />
         <input className="create-user-button" type="submit" value="Create user" />
       </form>
     );

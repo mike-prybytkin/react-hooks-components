@@ -12,7 +12,7 @@ class Switcher extends Component<SwitcherProps> {
             id="radio-male"
             name="switch-one"
             value={this.props.optionOne}
-            ref={this.props.SwitcherRef}
+            ref={this.props.switcherRef}
             defaultChecked
           />
           <label htmlFor="radio-male">{this.props.optionOne}</label>
