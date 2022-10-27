@@ -4,6 +4,7 @@ import DateInput from 'components/form-elements/date-input/date-input';
 import Select from 'components/form-elements/select/select';
 import Switcher from 'components/form-elements/switcher/switcher';
 import Checkbox from 'components/form-elements/checkbox/checkbox';
+import FileUpload from 'components/form-elements/file-upload/file-upload';
 
 export default class CreateUserForm extends Component<unknown> {
   nameTextInput!: HTMLInputElement | null;
@@ -11,12 +12,14 @@ export default class CreateUserForm extends Component<unknown> {
   selectSalary!: HTMLSelectElement | null;
   switcherGender!: HTMLInputElement | null;
   checkMailing!: HTMLInputElement | null;
+  addAvatar!: HTMLInputElement | null;
 
-  inputNameRef: React.LegacyRef<HTMLInputElement> | undefined;
-  inputDateRef: React.LegacyRef<HTMLInputElement> | undefined;
-  selectSalaryRef: React.LegacyRef<HTMLSelectElement> | undefined;
-  switcherRef: React.LegacyRef<HTMLInputElement> | undefined;
-  checkMailingRef: React.LegacyRef<HTMLInputElement> | undefined;
+  inputNameRef: React.LegacyRef<HTMLInputElement>;
+  inputDateRef: React.LegacyRef<HTMLInputElement>;
+  selectSalaryRef: React.LegacyRef<HTMLSelectElement>;
+  switcherRef: React.LegacyRef<HTMLInputElement>;
+  checkMailingRef: React.LegacyRef<HTMLInputElement>;
+  addAvatarRef: React.LegacyRef<HTMLInputElement>;
 
   userGender: string;
 
@@ -28,6 +31,7 @@ export default class CreateUserForm extends Component<unknown> {
     this.switcherRef = (element) => (this.switcherGender = element);
     this.userGender = '';
     this.checkMailingRef = (element) => (this.checkMailing = element);
+    this.addAvatarRef = (element) => (this.addAvatar = element);
   }
 
   getUserName = () => {
@@ -67,6 +71,10 @@ export default class CreateUserForm extends Component<unknown> {
     console.log(this.checkMailing?.checked);
   };
 
+  getAvatarPhoto = () => {
+    console.log(this.addAvatar?.value);
+  };
+
   handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     this.getUserName();
@@ -74,6 +82,7 @@ export default class CreateUserForm extends Component<unknown> {
     this.getUserSalary();
     this.getUserGender();
     this.checkReceiveMailing();
+    this.getAvatarPhoto();
   };
 
   render() {
@@ -102,6 +111,7 @@ export default class CreateUserForm extends Component<unknown> {
           switcherRef={this.switcherRef}
         />
         <Checkbox labelType="Receive mailing" checkMailingRef={this.checkMailingRef} />
+        <FileUpload labelType="Add your photo" addAvatarRef={this.addAvatarRef} />
         <input className="create-user-button" type="submit" value="Create user" />
       </form>
     );
