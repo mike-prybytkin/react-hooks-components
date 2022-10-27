@@ -8,12 +8,14 @@ export default class CreateUserForm extends Component<unknown> {
   nameTextInput!: HTMLInputElement | null;
   birthdayInput!: HTMLInputElement | null;
   selectSalary!: HTMLSelectElement | null;
-  switcherGender!: HTMLDivElement | null;
+  switcherGender!: HTMLInputElement | null;
 
   inputNameRef: React.LegacyRef<HTMLInputElement> | undefined;
   inputDateRef: React.LegacyRef<HTMLInputElement> | undefined;
   selectSalaryRef: React.LegacyRef<HTMLSelectElement> | undefined;
-  SwitcherRef: React.LegacyRef<HTMLDivElement> | undefined;
+  SwitcherRef: React.LegacyRef<HTMLInputElement> | undefined;
+
+  userGender: string;
 
   constructor(props: unknown) {
     super(props);
@@ -21,6 +23,7 @@ export default class CreateUserForm extends Component<unknown> {
     this.inputDateRef = (element) => (this.birthdayInput = element);
     this.selectSalaryRef = (element) => (this.selectSalary = element);
     this.SwitcherRef = (element) => (this.switcherGender = element);
+    this.userGender = '';
   }
 
   getUserName = () => {
@@ -48,11 +51,12 @@ export default class CreateUserForm extends Component<unknown> {
   };
 
   getUserGender = () => {
-    if (this.switcherGender) {
-      console.log(this.switcherGender);
-      // this.switcherGender.focus();
-      // this.switcherGender.value = '';
+    if (this.switcherGender?.checked) {
+      this.userGender = 'Male';
+    } else {
+      this.userGender = 'Female';
     }
+    console.log(this.userGender);
   };
 
   handleSubmit = (event: { preventDefault: () => void }) => {
