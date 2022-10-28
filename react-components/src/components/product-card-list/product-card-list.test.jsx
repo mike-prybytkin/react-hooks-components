@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import CardList from './card-list';
+import ProductCardList from './product-card-list';
 import { mockCards } from '../../mocks/cards';
 
-const setUp = (props) => render(<CardList cards={props} />);
+const setUp = (props) => render(<ProductCardList cards={props} />);
 
 describe('Card list component', () => {
   it('should render card list without data', () => {
