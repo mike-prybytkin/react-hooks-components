@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICard } from 'share/types';
+import { IProductCard } from 'share/types';
 import { ILiveSearchState } from './types';
 import { ILiveSearchProps } from './types';
 
@@ -18,7 +18,7 @@ class LiveSearch extends React.Component<ILiveSearchProps, ILiveSearchState> {
   };
 
   handleFilterCards(filterValue: string) {
-    return this.props.cards.filter((item: ICard) => {
+    return this.props.cards.filter((item: IProductCard) => {
       return item.title.toLowerCase().includes(filterValue.toLowerCase().trim());
     });
   }

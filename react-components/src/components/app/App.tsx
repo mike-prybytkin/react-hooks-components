@@ -4,7 +4,7 @@ import AboutUs from 'pages/about-us/about-us';
 import Page404 from 'pages/404/404';
 import Main from 'pages/main/main';
 import Header from 'components/header/header';
-import { ICard } from 'share/types';
+import { IProductCard } from 'share/types';
 import { IAppState } from './types';
 import mockText from 'mocks/text';
 import Form from 'pages/form/form';
@@ -26,7 +26,7 @@ class App extends React.Component<unknown, IAppState> {
     this.setState({ isLoading: true });
     try {
       const response = await fetch(URL);
-      const cards: ICard[] = await response.json();
+      const cards: IProductCard[] = await response.json();
       this.setState({
         data: cards,
         isLoading: false,
@@ -42,7 +42,7 @@ class App extends React.Component<unknown, IAppState> {
     this.fetchCards();
   }
 
-  onSearch(cards: ICard[]) {
+  onSearch(cards: IProductCard[]) {
     this.setState({
       currentData: cards,
     });

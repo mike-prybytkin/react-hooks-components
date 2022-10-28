@@ -1,5 +1,5 @@
-import { ICard } from 'share/types';
+import { IProductCard } from 'share/types';
 
 export interface ProductCardProps {
-  card: ICard;
+  card: IProductCard;
 }
