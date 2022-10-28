@@ -6,60 +6,48 @@ import Switcher from 'components/form-elements/switcher/switcher';
 import Checkbox from 'components/form-elements/checkbox/checkbox';
 import FileUpload from 'components/form-elements/file-upload/file-upload';
 
-export default class CreateUserForm extends Component<unknown> {
-  nameTextInput!: HTMLInputElement | null;
-  birthdayInput!: HTMLInputElement | null;
-  selectSalary!: HTMLSelectElement | null;
-  switcherGender!: HTMLInputElement | null;
-  checkMailing!: HTMLInputElement | null;
-  addAvatar!: HTMLInputElement | null;
-
-  inputNameRef: React.LegacyRef<HTMLInputElement>;
-  inputDateRef: React.LegacyRef<HTMLInputElement>;
-  selectSalaryRef: React.LegacyRef<HTMLSelectElement>;
-  switcherRef: React.LegacyRef<HTMLInputElement>;
-  checkMailingRef: React.LegacyRef<HTMLInputElement>;
-  addAvatarRef: React.LegacyRef<HTMLInputElement>;
+export default class UserCreatingForm extends Component<unknown> {
+  inputNameRef: React.RefObject<HTMLInputElement>;
+  inputDateRef: React.RefObject<HTMLInputElement>;
+  selectSalaryRef: React.RefObject<HTMLSelectElement>;
+  switcherRef: React.RefObject<HTMLInputElement>;
+  checkMailingRef: React.RefObject<HTMLInputElement>;
+  addAvatarRef: React.RefObject<HTMLInputElement>;
 
   userGender: string;
 
   constructor(props: unknown) {
     super(props);
-    this.inputNameRef = (element) => (this.nameTextInput = element);
-    this.inputDateRef = (element) => (this.birthdayInput = element);
-    this.selectSalaryRef = (element) => (this.selectSalary = element);
-    this.switcherRef = (element) => (this.switcherGender = element);
+    this.inputNameRef = React.createRef();
+    this.inputDateRef = React.createRef();
+    this.selectSalaryRef = React.createRef();
+    this.switcherRef = React.createRef();
     this.userGender = '';
-    this.checkMailingRef = (element) => (this.checkMailing = element);
-    this.addAvatarRef = (element) => (this.addAvatar = element);
+    this.checkMailingRef = React.createRef();
+    this.addAvatarRef = React.createRef();
   }
 
   getUserName = () => {
-    if (this.nameTextInput) {
-      console.log(this.nameTextInput.value);
-      // this.nameTextInput.focus();
-      // this.nameTextInput.value = '';
+    console.log(this.inputNameRef?.current?.value);
+    if (this.inputNameRef.current) {
+      this.inputNameRef.current.value = '';
     }
   };
 
   getUserBirthday = () => {
-    if (this.birthdayInput) {
-      console.log(this.birthdayInput.value);
-      // this.birthdayInput.focus();
-      // this.birthdayInput.value = '';
-    }
+    console.log(this.inputDateRef?.current?.value);
+    // this.birthdayInput.focus();
+    // this.birthdayInput.value = '';
   };
 
   getUserSalary = () => {
-    if (this.selectSalary) {
-      console.log(this.selectSalary.value);
-      // this.selectSalary.focus();
-      // this.selectSalary.value = '';
-    }
+    console.log(this.selectSalaryRef?.current?.value);
+    // this.selectSalary.focus();
+    // this.selectSalary.value = '';
   };
 
   getUserGender = () => {
-    if (this.switcherGender?.checked) {
+    if (this.switcherRef.current?.checked) {
       this.userGender = 'Male';
     } else {
       this.userGender = 'Female';
@@ -68,11 +56,11 @@ export default class CreateUserForm extends Component<unknown> {
   };
 
   checkReceiveMailing = () => {
-    console.log(this.checkMailing?.checked);
+    console.log(this.checkMailingRef?.current?.checked);
   };
 
   getAvatarPhoto = () => {
-    console.log(this.addAvatar?.value);
+    console.log(this.addAvatarRef?.current?.value);
   };
 
   handleSubmit = (event: { preventDefault: () => void }) => {
