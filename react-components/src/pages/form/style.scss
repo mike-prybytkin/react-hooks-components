@@ -4,7 +4,8 @@
   }
 
   .form-content-wrapper {
-    width: 98vw;
-    @include flex(flex-start);
+    width: 94vw;
+    @include flex(flex-start, flex-start);
+    gap: 40px;
   }
 }
