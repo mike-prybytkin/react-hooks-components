@@ -5,6 +5,8 @@ import Select from 'components/form-elements/select/select';
 import Switcher from 'components/form-elements/switcher/switcher';
 import Checkbox from 'components/form-elements/checkbox/checkbox';
 import FileUpload from 'components/form-elements/file-upload/file-upload';
+import { setItemLocalSrorage } from 'utils/localStorage/locatStorage';
+import { IUserCard } from 'share/types';
 
 export default class UserCreatingForm extends Component<unknown> {
   inputNameRef: React.RefObject<HTMLInputElement>;
@@ -14,6 +16,7 @@ export default class UserCreatingForm extends Component<unknown> {
   checkMailingRef: React.RefObject<HTMLInputElement>;
   addAvatarRef: React.RefObject<HTMLInputElement>;
   userGender: string;
+  userName: string;
 
   constructor(props: unknown) {
     super(props);
@@ -24,25 +27,15 @@ export default class UserCreatingForm extends Component<unknown> {
     this.checkMailingRef = React.createRef();
     this.addAvatarRef = React.createRef();
     this.userGender = '';
+    this.userName = '';
   }
 
   getUserName = () => {
-    console.log(this.inputNameRef?.current?.value);
-    if (this.inputNameRef.current) {
-      this.inputNameRef.current.value = '';
-    }
+    this.userName = this.inputNameRef?.current?.value ?? '';
   };
 
   getUserBirthday = () => {
-    console.log(this.inputDateRef?.current?.value);
-    // this.birthdayInput.focus();
-    // this.birthdayInput.value = '';
-  };
-
-  getUserSalary = () => {
-    console.log(this.selectSalaryRef?.current?.value);
-    // this.selectSalary.focus();
-    // this.selectSalary.value = '';
+    return this.inputDateRef?.current?.value.split('-').reverse().join('.');
   };
 
   getUserGender = () => {
@@ -51,33 +44,43 @@ export default class UserCreatingForm extends Component<unknown> {
     } else {
       this.userGender = 'Female';
     }
-    console.log(this.userGender);
-  };
-
-  checkReceiveMailing = () => {
-    console.log(this.checkMailingRef?.current?.checked);
   };
 
   getAvatarPhoto = () => {
-    if (this.addAvatarRef?.current?.files) {
+    if (this.addAvatarRef?.current?.files && this.addAvatarRef?.current?.files?.length > 0) {
       const file = this.addAvatarRef?.current?.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(file);
 
       reader.onload = () => {
         const result = reader.result as string;
-        console.log(result);
+        this.addUserInLocalStorage(result);
       };
     }
   };
+
+  addUserInLocalStorage(userAvatar: string) {
+    const newUser: IUserCard = {
+      name: this.userName,
+      gender: this.userGender,
+      birthday: this.getUserBirthday() ?? '',
+      salary: this.selectSalaryRef?.current?.value ?? '',
+      mailing: this.checkMailingRef?.current?.checked ?? true,
+      avatarPath: userAvatar,
+    };
+    setItemLocalSrorage('createdUsers', newUser);
+  }
+
+  resetForm() {
+    const form: HTMLFormElement | null = document.querySelector('.create-user-form');
+    form?.reset();
+  }
 
   handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     this.getUserName();
     this.getUserBirthday();
-    this.getUserSalary();
     this.getUserGender();
-    this.checkReceiveMailing();
     this.getAvatarPhoto();
   };
 
@@ -88,7 +91,7 @@ export default class UserCreatingForm extends Component<unknown> {
           labelType="Name:"
           placeholderText="Your Name"
           minNameLength="2"
-          maxNameLength="20"
+          maxNameLength="12"
           required={true}
           inputNameRef={this.inputNameRef}
         />

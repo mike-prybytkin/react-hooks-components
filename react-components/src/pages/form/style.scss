@@ -7,5 +7,9 @@
     width: 94vw;
     @include flex(flex-start, flex-start);
     gap: 40px;
+
+    .form-content-message {
+      font-size: 1.2rem;
+    }
   }
 }
