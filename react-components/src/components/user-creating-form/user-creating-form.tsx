@@ -13,7 +13,6 @@ export default class UserCreatingForm extends Component<unknown> {
   switcherRef: React.RefObject<HTMLInputElement>;
   checkMailingRef: React.RefObject<HTMLInputElement>;
   addAvatarRef: React.RefObject<HTMLInputElement>;
-
   userGender: string;
 
   constructor(props: unknown) {
@@ -22,9 +21,9 @@ export default class UserCreatingForm extends Component<unknown> {
     this.inputDateRef = React.createRef();
     this.selectSalaryRef = React.createRef();
     this.switcherRef = React.createRef();
-    this.userGender = '';
     this.checkMailingRef = React.createRef();
     this.addAvatarRef = React.createRef();
+    this.userGender = '';
   }
 
   getUserName = () => {
@@ -60,7 +59,16 @@ export default class UserCreatingForm extends Component<unknown> {
   };
 
   getAvatarPhoto = () => {
-    console.log(this.addAvatarRef?.current?.value);
+    if (this.addAvatarRef?.current?.files) {
+      const file = this.addAvatarRef?.current?.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        const result = reader.result as string;
+        console.log(result);
+      };
+    }
   };
 
   handleSubmit = (event: { preventDefault: () => void }) => {

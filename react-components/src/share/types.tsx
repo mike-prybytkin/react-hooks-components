@@ -10,3 +10,12 @@ export interface IProductCard {
     count: number;
   };
 }
+
+export interface IUserCard {
+  name: string;
+  birthday: string;
+  salary: string;
+  gender: string;
+  mailing: boolean;
+  avatarPath: string;
+}

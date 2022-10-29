@@ -10,7 +10,7 @@ class FileUpload extends Component<FileUploadProps> {
           type="file"
           id="user-avatar"
           name="user-avatar"
-          accept=".jpg, .jpeg, .png"
+          accept="image/*"
           ref={this.props.addAvatarRef}
         />
         {this.props.labelType}
