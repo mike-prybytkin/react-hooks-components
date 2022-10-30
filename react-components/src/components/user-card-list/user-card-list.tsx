@@ -5,7 +5,7 @@ import { UserCardListProps } from './types';
 class UserCardList extends Component<UserCardListProps> {
   renderCards() {
     return this.props.cards.map((card) => (
-      <UserCard card={card} key={card.avatarPath.slice(0, 50)} />
+      <UserCard card={card} key={card.avatarPath.slice(30, 70)} />
     ));
   }
   render() {

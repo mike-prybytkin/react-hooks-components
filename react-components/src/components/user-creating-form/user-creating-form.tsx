@@ -5,10 +5,10 @@ import Select from 'components/form-elements/select/select';
 import Switcher from 'components/form-elements/switcher/switcher';
 import Checkbox from 'components/form-elements/checkbox/checkbox';
 import FileUpload from 'components/form-elements/file-upload/file-upload';
-import { setItemLocalSrorage } from 'utils/localStorage/locatStorage';
 import { IUserCard } from 'share/types';
+import { IUserCreatingFormProps } from './types';
 
-export default class UserCreatingForm extends Component<unknown> {
+export default class UserCreatingForm extends Component<IUserCreatingFormProps> {
   inputNameRef: React.RefObject<HTMLInputElement>;
   inputDateRef: React.RefObject<HTMLInputElement>;
   selectSalaryRef: React.RefObject<HTMLSelectElement>;
@@ -18,7 +18,7 @@ export default class UserCreatingForm extends Component<unknown> {
   userGender: string;
   userName: string;
 
-  constructor(props: unknown) {
+  constructor(props: IUserCreatingFormProps) {
     super(props);
     this.inputNameRef = React.createRef();
     this.inputDateRef = React.createRef();
@@ -56,6 +56,8 @@ export default class UserCreatingForm extends Component<unknown> {
         const result = reader.result as string;
         this.addUserInLocalStorage(result);
       };
+    } else {
+      this.addAvatarRef?.current?.focus();
     }
   };
 
@@ -68,7 +70,8 @@ export default class UserCreatingForm extends Component<unknown> {
       mailing: this.checkMailingRef?.current?.checked ?? true,
       avatarPath: userAvatar,
     };
-    setItemLocalSrorage('createdUsers', newUser);
+    this.props.onForm(newUser);
+    this.resetForm();
   }
 
   resetForm() {
