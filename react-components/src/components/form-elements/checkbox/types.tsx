@@ -1,4 +1,4 @@
 export interface CheckboxProps {
   labelType: string;
-  checkMailingRef: React.LegacyRef<HTMLInputElement> | undefined;
+  checkMailingRef: React.RefObject<HTMLInputElement> | undefined;
 }

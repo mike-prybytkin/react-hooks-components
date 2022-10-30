@@ -3,5 +3,5 @@ export interface DateInputProps {
   labelType: string;
   minDate: string;
   maxDate: string;
-  inputDateRef: React.LegacyRef<HTMLInputElement> | undefined;
+  inputDateRef: React.RefObject<HTMLInputElement> | undefined;
 }

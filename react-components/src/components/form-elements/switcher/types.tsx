@@ -2,5 +2,5 @@ export interface SwitcherProps {
   switcherType: string;
   optionOne: string;
   optionTwo: string;
-  switcherRef: React.LegacyRef<HTMLInputElement> | undefined;
+  switcherRef: React.RefObject<HTMLInputElement> | undefined;
 }
