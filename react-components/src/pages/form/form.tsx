@@ -34,7 +34,7 @@ export default class Form extends Component<IFormProps, IFormState> {
           {this.state.userCards && this.state.userCards.length > 0 ? (
             <UserCardList cards={this.state.userCards} />
           ) : (
-            <p className="form-content-message"> Sorry, no users have been created yet... </p>
+            <p className="form-content-message">{this.props.noCreatedUserMessage}</p>
           )}
         </div>
       </div>

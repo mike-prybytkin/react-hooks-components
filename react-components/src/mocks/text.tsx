@@ -11,6 +11,7 @@ const mockText = {
   loading: 'Loading ...',
   itemNotFound: 'Sorry, item not found...',
   headingForm: 'Create User!',
+  notCreatedUserInForm: 'Sorry, no users have been created yet...',
 };
 
 export default mockText;
