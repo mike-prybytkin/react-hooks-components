@@ -112,12 +112,12 @@ exports[`Page Form component should create snapshot 1`] = `
               id="radio-female"
               name="switch-one"
               type="radio"
-              value="Femail"
+              value="Female"
             />
             <label
               for="radio-female"
             >
-              Femail
+              Female
             </label>
           </div>
         </div>

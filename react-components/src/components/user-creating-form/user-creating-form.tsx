@@ -7,6 +7,7 @@ import Checkbox from 'components/form-elements/checkbox/checkbox';
 import FileUpload from 'components/form-elements/file-upload/file-upload';
 import { IUserCard } from 'share/types';
 import { IUserCreatingFormProps } from './types';
+import mockText from 'mocks/text';
 
 export default class UserCreatingForm extends Component<IUserCreatingFormProps> {
   inputNameRef: React.RefObject<HTMLInputElement>;
@@ -91,30 +92,30 @@ export default class UserCreatingForm extends Component<IUserCreatingFormProps> 
     return (
       <form className="create-user-form" onSubmit={this.handleSubmit}>
         <TextInput
-          labelType="Name:"
-          placeholderText="Your Name"
+          labelType={mockText.labelUserName}
+          placeholderText={mockText.placeholderUserName}
           minNameLength="2"
           maxNameLength="12"
           required={true}
           inputNameRef={this.inputNameRef}
         />
         <DateInput
-          labelType="Birthday:"
+          labelType={mockText.labelUserBirthday}
           defaultValue="2000-01-01"
           minDate="1922-01-01"
           maxDate="2022-01-01"
           inputDateRef={this.inputDateRef}
         />
-        <Select labelType="Your monthly income:" selectSalaryRef={this.selectSalaryRef} />
+        <Select labelType={mockText.labelUserSalary} selectSalaryRef={this.selectSalaryRef} />
         <Switcher
-          switcherType="Gender:"
-          optionOne="Male"
-          optionTwo="Femail"
+          switcherType={mockText.switcherGender}
+          optionOne={mockText.switcherGenderMale}
+          optionTwo={mockText.switcherGenderFemale}
           switcherRef={this.switcherRef}
         />
-        <Checkbox labelType="Receive mailing" checkMailingRef={this.checkMailingRef} />
-        <FileUpload labelType="Add your photo" addAvatarRef={this.addAvatarRef} />
-        <input className="create-user-button" type="submit" value="Create user" />
+        <Checkbox labelType={mockText.labelUserMailing} checkMailingRef={this.checkMailingRef} />
+        <FileUpload labelType={mockText.labelFileUpload} addAvatarRef={this.addAvatarRef} />
+        <input className="create-user-button" type="submit" value={mockText.createUserButton} />
       </form>
     );
   }
