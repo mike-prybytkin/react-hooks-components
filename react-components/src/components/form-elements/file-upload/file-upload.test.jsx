@@ -1,22 +1,16 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import mockText from '../../../mocks/text';
-import DateInput from './date-input';
+import FileUpload from './file-upload';
 
 const setUp = () => {
-  return render(
-    <DateInput
-      labelType={mockText.labelUserBirthday}
-      defaultValue="2000-01-01"
-      inputDateRef={undefined}
-    />
-  );
+  return render(<FileUpload labelType={mockText.labelFileUpload} addAvatarRef={undefined} />);
 };
 
-describe('DateInput component', () => {
+describe('FileUpload component', () => {
   it('should correctly render date input with a className', () => {
     const { container } = setUp();
-    expect(container.getElementsByClassName('user-birthday__label').length).toBe(1);
+    expect(container.getElementsByClassName('avatar-label').length).toBe(1);
   });
 
   it('should create snapshot', () => {
