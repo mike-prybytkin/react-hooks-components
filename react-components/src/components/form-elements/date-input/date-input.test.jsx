@@ -14,10 +14,10 @@ const setUp = () => {
 };
 
 describe('DateInput component', () => {
-  // it('should correctly render date input', () => {
-  //   setUp();
-  //   expect(screen.findByText(new RegExp(mockText.labelUserBirthday, 'i'))).toBeInTheDocument();
-  // });
+  it('should correctly render date input with a className', () => {
+    const { container } = setUp();
+    expect(container.getElementsByClassName('user-birthday__label').length).toBe(1);
+  });
 
   it('should create snapshot', () => {
     const { asFragment } = setUp();
