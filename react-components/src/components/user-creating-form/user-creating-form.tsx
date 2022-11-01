@@ -8,16 +8,25 @@ import FileUpload from 'components/form-elements/file-upload/file-upload';
 import { IUserCard } from 'share/types';
 import { IUserCreatingFormProps } from './types';
 import mockText from 'mocks/text';
+import { userFormValidator } from 'utils/validators/user-form/user-form-validator';
 
-export default class UserCreatingForm extends Component<IUserCreatingFormProps> {
+const initialState: IUserCard = {
+  name: '',
+  gender: '',
+  birthday: '',
+  salary: '',
+  mailing: true,
+  avatarPath: '',
+};
+
+export default class UserCreatingForm extends Component<IUserCreatingFormProps, IUserCard> {
   inputNameRef: React.RefObject<HTMLInputElement>;
   inputDateRef: React.RefObject<HTMLInputElement>;
   selectSalaryRef: React.RefObject<HTMLSelectElement>;
   switcherRef: React.RefObject<HTMLInputElement>;
   checkMailingRef: React.RefObject<HTMLInputElement>;
   addAvatarRef: React.RefObject<HTMLInputElement>;
-  userGender: string;
-  userName: string;
+  formRef: React.RefObject<HTMLFormElement>;
 
   constructor(props: IUserCreatingFormProps) {
     super(props);
@@ -27,25 +36,9 @@ export default class UserCreatingForm extends Component<IUserCreatingFormProps> 
     this.switcherRef = React.createRef();
     this.checkMailingRef = React.createRef();
     this.addAvatarRef = React.createRef();
-    this.userGender = '';
-    this.userName = '';
+    this.formRef = React.createRef();
+    this.state = initialState;
   }
-
-  getUserName = () => {
-    this.userName = this.inputNameRef?.current?.value ?? '';
-  };
-
-  getUserBirthday = () => {
-    return this.inputDateRef?.current?.value.split('-').reverse().join('.');
-  };
-
-  getUserGender = () => {
-    if (this.switcherRef.current?.checked) {
-      this.userGender = 'Male';
-    } else {
-      this.userGender = 'Female';
-    }
-  };
 
   getAvatarPhoto = () => {
     if (this.addAvatarRef?.current?.files && this.addAvatarRef?.current?.files?.length > 0) {
@@ -55,42 +48,58 @@ export default class UserCreatingForm extends Component<IUserCreatingFormProps> 
 
       reader.onload = () => {
         const result = reader.result as string;
-        this.addUserInLocalStorage(result);
+
+        this.setState({
+          avatarPath: result,
+        });
       };
-    } else {
-      this.addAvatarRef?.current?.focus();
     }
   };
 
-  addUserInLocalStorage(userAvatar: string) {
-    const newUser: IUserCard = {
-      name: this.userName,
-      gender: this.userGender,
-      birthday: this.getUserBirthday() ?? '',
-      salary: this.selectSalaryRef?.current?.value ?? '',
-      mailing: this.checkMailingRef?.current?.checked ?? true,
-      avatarPath: userAvatar,
-    };
-    this.props.onForm(newUser);
-    this.resetForm();
-  }
-
-  resetForm() {
-    const form: HTMLFormElement | null = document.querySelector('.create-user-form');
-    form?.reset();
-  }
-
   handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    this.getUserName();
-    this.getUserBirthday();
-    this.getUserGender();
     this.getAvatarPhoto();
+    this.setState({
+      name: this.inputNameRef?.current?.value ?? '',
+      gender: this.switcherRef.current?.checked ? 'Male' : 'Femail',
+      birthday: this.inputDateRef?.current?.value.split('-').reverse().join('.') ?? '',
+      salary: this.selectSalaryRef?.current?.value ?? '',
+      mailing: this.checkMailingRef?.current?.checked ?? true,
+    });
   };
+
+  focusOnInvalidComponent(nameOfProp: string) {
+    switch (nameOfProp) {
+      case 'name':
+        this.inputNameRef?.current?.focus();
+        break;
+
+      case 'avatarPath':
+        this.addAvatarRef?.current?.focus();
+        break;
+    }
+  }
+
+  componentDidUpdate(prevProps: IUserCreatingFormProps, prevState: IUserCard) {
+    if (prevState !== this.state) {
+      const isValid = userFormValidator({
+        name: this.state.name,
+        avatarPath: this.state.avatarPath,
+      });
+
+      if (!isValid) {
+        this.props.onForm(this.state);
+        this.formRef.current?.reset();
+        this.setState(initialState);
+      } else {
+        this.focusOnInvalidComponent(isValid);
+      }
+    }
+  }
 
   render() {
     return (
-      <form className="create-user-form" onSubmit={this.handleSubmit}>
+      <form className="create-user-form" onSubmit={this.handleSubmit} ref={this.formRef}>
         <TextInput
           labelType={mockText.labelUserName}
           placeholderText={mockText.placeholderUserName}
