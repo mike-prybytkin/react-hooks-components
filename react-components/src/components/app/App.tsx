@@ -4,10 +4,10 @@ import AboutUs from 'pages/about-us/about-us';
 import Page404 from 'pages/404/404';
 import Main from 'pages/main/main';
 import Header from 'components/header/header';
-import { IProductCard } from 'share/types';
 import { IAppState } from './types';
 import mockText from 'mocks/text';
 import Form from 'pages/form/form';
+import { IFetchData } from './types';
 
 class App extends React.Component<unknown, IAppState> {
   constructor(props: unknown) {
@@ -15,20 +15,19 @@ class App extends React.Component<unknown, IAppState> {
     this.state = {
       data: [],
       isLoading: false,
-      currentData: [],
       fetchError: '',
+      querySearch: '',
     };
-    this.onSearch = this.onSearch.bind(this);
   }
 
-  async fetchCards() {
-    const URL = 'https://fakestoreapi.com/products?limit=20';
+  async fetchData() {
+    const URL = `https://rickandmortyapi.com/api/character/?name=${this.state.querySearch}`;
     this.setState({ isLoading: true });
     try {
       const response = await fetch(URL);
-      const cards: IProductCard[] = await response.json();
+      const fetchData: IFetchData = await response.json();
       this.setState({
-        data: cards,
+        data: fetchData.results,
         isLoading: false,
       });
     } catch (error) {
@@ -38,25 +37,31 @@ class App extends React.Component<unknown, IAppState> {
     }
   }
 
+  onSearch = (querySearch: string) => {
+    this.setState({
+      querySearch: querySearch,
+    });
+  };
+
   componentDidMount() {
-    this.fetchCards();
+    this.fetchData();
   }
 
-  onSearch(cards: IProductCard[]) {
-    this.setState({
-      currentData: cards,
-    });
+  componentDidUpdate(prevProps: Readonly<unknown>, prevState: Readonly<IAppState>): void {
+    if (prevState.querySearch !== this.state.querySearch) {
+      this.fetchData();
+    }
   }
 
   render() {
     return (
       <div className="App" data-testid="app">
-        <Header cards={this.state.data} onSearch={this.onSearch} />
+        <Header onSearch={this.onSearch} />
         <main className="main">
           <Routes>
             <Route
               path="/"
-              element={<Main cards={this.state.currentData} heading={mockText.headingMain} />}
+              element={<Main cards={this.state.data} heading={mockText.headingMain} />}
             />
             <Route
               path="/about"
@@ -85,9 +90,6 @@ class App extends React.Component<unknown, IAppState> {
             <Route path="/*" element={<Navigate to="/notFound" />} />
           </Routes>
           {this.state.isLoading && <p className="main__message_loading">{mockText.loading}</p>}
-          {this.state.currentData.length === 0 && !this.state.isLoading && (
-            <p className="main__message_not-found">{mockText.itemNotFound}</p>
-          )}
         </main>
       </div>
     );

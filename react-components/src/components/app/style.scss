@@ -19,8 +19,7 @@ code {
   @include flex(center, center);
   flex-direction: column;
 
-  .main__message_loading,
-  .main__message_not-found {
+  .main__message_loading {
     font-size: 1.2rem;
   }
 }

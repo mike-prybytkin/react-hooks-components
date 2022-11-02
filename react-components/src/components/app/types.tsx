@@ -3,6 +3,16 @@ import { IProductCard } from 'share/types';
 export interface IAppState {
   data: IProductCard[];
   isLoading: boolean;
-  currentData: IProductCard[];
   fetchError: unknown;
+  querySearch: string;
+}
+
+export interface IFetchData {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: IProductCard[];
 }

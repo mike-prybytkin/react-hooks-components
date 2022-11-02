@@ -72,7 +72,7 @@ exports[`Testing Application should renders correctly application 1`] = `
     className="main"
   >
     <h1>
-      Welcome to our store!
+      Welcome to us!
     </h1>
     <div
       className="cards-wrapper"

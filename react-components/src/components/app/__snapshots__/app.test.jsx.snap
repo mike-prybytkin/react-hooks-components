@@ -69,7 +69,7 @@ exports[`App should create snapshot 1`] = `
       class="main"
     >
       <h1>
-        Welcome to our store!
+        Welcome to us!
       </h1>
       <div
         class="cards-wrapper"

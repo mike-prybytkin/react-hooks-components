@@ -9,10 +9,9 @@ class ProductCard extends React.Component<ProductCardProps, unknown> {
   render() {
     return (
       <div className="card">
-        <h3 className="card__title">{this.props.card.title}</h3>
-        <img className="card__img" src={this.props.card.image} alt={this.props.card.category} />
-        <p className="card__rating">{this.props.card.rating.rate} &#9733;</p>
-        <p className="card__price">{this.props.card.price} &#36;</p>
+        <img className="card__img" src={this.props.card.image} alt={this.props.card.image} />
+        <h3 className="card__title">{this.props.card.name}</h3>
+        <button className="card__button">{this.props.buttonText}</button>
       </div>
     );
   }
