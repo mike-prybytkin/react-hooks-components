@@ -23,6 +23,8 @@ const mockText = {
   labelFileUpload: 'Add your photo',
   createUserButton: 'Create user',
   productCardButton: 'Learn more',
+  prevButton: 'prev',
+  nextButton: 'next',
 };
 
 export default mockText;

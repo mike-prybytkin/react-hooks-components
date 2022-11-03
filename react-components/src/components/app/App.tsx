@@ -17,25 +17,40 @@ class App extends React.Component<unknown, IAppState> {
       isLoading: false,
       fetchError: '',
       querySearch: '',
+      queryPage: 1,
+      allPages: 0,
+      cardsLimit: 20,
     };
   }
 
   async fetchData() {
-    const URL = `https://rickandmortyapi.com/api/character/?name=${this.state.querySearch}`;
+    const BASE_URL = `https://rickandmortyapi.com/api/character/`;
     this.setState({ isLoading: true });
     try {
-      const response = await fetch(URL);
+      const response = await fetch(
+        `${BASE_URL}?name=${this.state.querySearch}&page=${this.state.queryPage}`
+      );
       const fetchData: IFetchData = await response.json();
       this.setState({
         data: fetchData.results,
+        allPages: fetchData.info.pages,
         isLoading: false,
       });
     } catch (error) {
       this.setState({
+        data: [],
         fetchError: error,
+        isLoading: false,
+        queryPage: 1,
       });
     }
   }
+
+  updateQuery = (queryPage: number) => {
+    this.setState({
+      queryPage: queryPage,
+    });
+  };
 
   onSearch = (querySearch: string) => {
     this.setState({
@@ -48,7 +63,10 @@ class App extends React.Component<unknown, IAppState> {
   }
 
   componentDidUpdate(prevProps: Readonly<unknown>, prevState: Readonly<IAppState>): void {
-    if (prevState.querySearch !== this.state.querySearch) {
+    if (
+      prevState.querySearch !== this.state.querySearch ||
+      prevState.queryPage !== this.state.queryPage
+    ) {
       this.fetchData();
     }
   }
@@ -61,7 +79,16 @@ class App extends React.Component<unknown, IAppState> {
           <Routes>
             <Route
               path="/"
-              element={<Main cards={this.state.data} heading={mockText.headingMain} />}
+              element={
+                <Main
+                  cards={this.state.data}
+                  heading={mockText.headingMain}
+                  queryPage={this.state.queryPage}
+                  allPages={this.state.allPages}
+                  cardsLimit={this.state.cardsLimit}
+                  updateQuery={this.updateQuery}
+                />
+              }
             />
             <Route
               path="/about"

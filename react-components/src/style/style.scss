@@ -13,3 +13,13 @@ $darkColor: #000000;
   justify-content: $justify;
   align-items: $align;
 }
+
+%button{
+  background-color:  $buttonColor;
+  border: 2px solid $backgroundHeaderColor;
+  transition: all 0.3s;
+  
+  &:hover {
+    border: 2px solid $lightColor;
+  }
+}

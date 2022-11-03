@@ -17,17 +17,11 @@
   }
 
   .card__button {
+    @extend %button;
     margin-bottom: 15px;
-    background-color:  $buttonColor;
-    border: 2px solid $backgroundHeaderColor;
     border-radius: 6px;
     letter-spacing: 0.2rem;
     padding: 4px 8px;
-    transition: all 0.3s;
-    
-    &:hover {
-      border: 2px solid $lightColor;
-    }
   }
 }
 

@@ -5,6 +5,9 @@ export interface IAppState {
   isLoading: boolean;
   fetchError: unknown;
   querySearch: string;
+  queryPage: number;
+  allPages: number;
+  cardsLimit: number;
 }
 
 export interface IFetchData {
