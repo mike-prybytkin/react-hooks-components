@@ -8,7 +8,7 @@ const getItemLocalSrorage = (key: StorageKey) => {
 
 const setItemLocalSrorage = (key: StorageKey, card: IUserCard) => {
   const data = getItemLocalSrorage(key);
-  if (data && data.length > 0) {
+  if (data) {
     data.push(card);
     localStorage.setItem(key, JSON.stringify(data));
   } else {
