@@ -6,7 +6,7 @@ import Switcher from 'components/form-elements/switcher/switcher';
 import Checkbox from 'components/form-elements/checkbox/checkbox';
 import FileUpload from 'components/form-elements/file-upload/file-upload';
 import { IUserCard } from 'share/types';
-import { IUserCreatingFormProps } from './types';
+import { UserCreatingFormProps } from './types';
 import mockText from 'mocks/text';
 import { userFormValidator } from 'utils/validators/user-form/user-form-validator';
 
@@ -19,7 +19,7 @@ const initialState: IUserCard = {
   avatarPath: '',
 };
 
-export default class UserCreatingForm extends Component<IUserCreatingFormProps, IUserCard> {
+export default class UserCreatingForm extends Component<UserCreatingFormProps, IUserCard> {
   inputNameRef: React.RefObject<HTMLInputElement>;
   inputDateRef: React.RefObject<HTMLInputElement>;
   selectSalaryRef: React.RefObject<HTMLSelectElement>;
@@ -28,7 +28,7 @@ export default class UserCreatingForm extends Component<IUserCreatingFormProps, 
   addAvatarRef: React.RefObject<HTMLInputElement>;
   formRef: React.RefObject<HTMLFormElement>;
 
-  constructor(props: IUserCreatingFormProps) {
+  constructor(props: UserCreatingFormProps) {
     super(props);
     this.inputNameRef = React.createRef();
     this.inputDateRef = React.createRef();
@@ -80,7 +80,7 @@ export default class UserCreatingForm extends Component<IUserCreatingFormProps, 
     }
   }
 
-  componentDidUpdate(prevProps: IUserCreatingFormProps, prevState: IUserCard) {
+  componentDidUpdate(prevProps: UserCreatingFormProps, prevState: IUserCard) {
     if (prevState !== this.state) {
       const isValid = userFormValidator({
         name: this.state.name,

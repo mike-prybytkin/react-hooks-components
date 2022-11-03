@@ -1,10 +1,10 @@
 import React from 'react';
 import { IProductCard } from 'share/types';
-import { ILiveSearchState } from './types';
-import { ILiveSearchProps } from './types';
+import { LiveSearchState } from './types';
+import { LiveSearchProps } from './types';
 
-class LiveSearch extends React.Component<ILiveSearchProps, ILiveSearchState> {
-  constructor(props: ILiveSearchProps) {
+class LiveSearch extends React.Component<LiveSearchProps, LiveSearchState> {
+  constructor(props: LiveSearchProps) {
     super(props);
     this.state = {
       value: '',
@@ -34,8 +34,8 @@ class LiveSearch extends React.Component<ILiveSearchProps, ILiveSearchState> {
   }
 
   componentDidUpdate(
-    prevProps: Readonly<ILiveSearchProps>,
-    prevState: Readonly<ILiveSearchState>
+    prevProps: Readonly<LiveSearchProps>,
+    prevState: Readonly<LiveSearchState>
   ): void {
     if (prevProps.cards !== this.props.cards) {
       this.props.onSearch(this.handleFilterCards(this.state.value));

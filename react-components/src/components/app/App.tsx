@@ -5,11 +5,11 @@ import Page404 from 'pages/404/404';
 import Main from 'pages/main/main';
 import Header from 'components/header/header';
 import { IProductCard } from 'share/types';
-import { IAppState } from './types';
+import { AppState } from './types';
 import mockText from 'mocks/text';
 import Form from 'pages/form/form';
 
-class App extends React.Component<unknown, IAppState> {
+class App extends React.Component<unknown, AppState> {
   constructor(props: unknown) {
     super(props);
     this.state = {

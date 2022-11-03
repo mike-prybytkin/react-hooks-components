@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductCardProps } from './types';
 
-class ProductCard extends React.Component<ProductCardProps, unknown> {
+class ProductCard extends React.Component<ProductCardProps> {
   constructor(props: ProductCardProps) {
     super(props);
   }

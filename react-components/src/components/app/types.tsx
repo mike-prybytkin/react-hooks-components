@@ -1,6 +1,6 @@
 import { IProductCard } from 'share/types';
 
-export interface IAppState {
+export interface AppState {
   data: IProductCard[];
   isLoading: boolean;
   currentData: IProductCard[];

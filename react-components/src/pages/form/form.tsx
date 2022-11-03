@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { IFormProps } from './types';
+import { FormProps } from './types';
 import CreateUserForm from 'components/user-creating-form/user-creating-form';
 import UserCardList from 'components/user-card-list/user-card-list';
 import { getItemLocalSrorage, setItemLocalSrorage } from 'utils/localStorage/locatStorage';
-import { IFormState } from './types';
+import { FormState } from './types';
 import { IUserCard } from 'share/types';
 
-export default class Form extends Component<IFormProps, IFormState> {
+export default class Form extends Component<FormProps, FormState> {
   state = {
     userCards: [],
   };

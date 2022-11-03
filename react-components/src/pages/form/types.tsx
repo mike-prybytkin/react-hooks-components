@@ -1,7 +1,7 @@
 import { IUserCard } from 'share/types';
 
-export type IFormProps = { heading: string; noCreatedUserMessage: string };
+export type FormProps = { heading: string; noCreatedUserMessage: string };
 
-export interface IFormState {
+export interface FormState {
   userCards: IUserCard[];
 }

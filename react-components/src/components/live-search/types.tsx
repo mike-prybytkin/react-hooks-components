@@ -1,10 +1,10 @@
 import { IProductCard } from 'share/types';
 
-export interface ILiveSearchState {
+export interface LiveSearchState {
   value: string;
 }
 
-export interface ILiveSearchProps {
+export interface LiveSearchProps {
   cards: IProductCard[];
   onSearch: (cards: IProductCard[]) => void;
   placeholderText: string;
