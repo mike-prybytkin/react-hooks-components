@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Select from './select';
-import mockText from '../../../mocks/text';
+import mockText from 'mocks/text';
 
 const setUp = () =>
   render(<Select selectSalaryRef={undefined} labelType={mockText.labelUserSalary} />);
@@ -15,8 +15,8 @@ describe('Select component', () => {
   it('should correctly set default option', () => {
     setUp();
     expect(
-      (screen.getByRole('option', { name: 'less than 100$' }) as HTMLInputElement).selected
-    ).toBe(true);
+      (screen.getByRole('option', { name: 'less than 100$' }) as HTMLSelectElement).value
+    ).toBe('less than 100$');
   });
 
   it('should display the correct number of options', () => {

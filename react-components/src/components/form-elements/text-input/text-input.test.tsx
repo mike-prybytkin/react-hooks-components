@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import TextInput from './text-input';
-import mockText from '../../../mocks/text';
+import mockText from 'mocks/text';
 
 const setUp = () =>
   render(
