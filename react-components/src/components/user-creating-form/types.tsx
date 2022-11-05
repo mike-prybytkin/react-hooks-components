@@ -1,4 +1,4 @@
 import { IUserCard } from 'share/types';
-export interface IUserCreatingFormProps {
+export interface UserCreatingFormProps {
   onForm: (cards: IUserCard) => void;
 }

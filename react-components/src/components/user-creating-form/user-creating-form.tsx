@@ -6,9 +6,8 @@ import Switcher from 'components/form-elements/switcher/switcher';
 import Checkbox from 'components/form-elements/checkbox/checkbox';
 import FileUpload from 'components/form-elements/file-upload/file-upload';
 import { IUserCard } from 'share/types';
-import { IUserCreatingFormProps } from './types';
+import { UserCreatingFormProps } from './types';
 import mockText from 'mocks/text';
-import { userFormValidator } from 'utils/validators/user-form/user-form-validator';
 
 const initialState: IUserCard = {
   name: '',
@@ -19,21 +18,21 @@ const initialState: IUserCard = {
   avatarPath: '',
 };
 
-export default class UserCreatingForm extends Component<IUserCreatingFormProps, IUserCard> {
+export default class UserCreatingForm extends Component<UserCreatingFormProps, IUserCard> {
   inputNameRef: React.RefObject<HTMLInputElement>;
   inputDateRef: React.RefObject<HTMLInputElement>;
   selectSalaryRef: React.RefObject<HTMLSelectElement>;
-  switcherRef: React.RefObject<HTMLInputElement>;
+  switcherGenderRef: React.RefObject<HTMLInputElement>;
   checkMailingRef: React.RefObject<HTMLInputElement>;
   addAvatarRef: React.RefObject<HTMLInputElement>;
   formRef: React.RefObject<HTMLFormElement>;
 
-  constructor(props: IUserCreatingFormProps) {
+  constructor(props: UserCreatingFormProps) {
     super(props);
     this.inputNameRef = React.createRef();
     this.inputDateRef = React.createRef();
     this.selectSalaryRef = React.createRef();
-    this.switcherRef = React.createRef();
+    this.switcherGenderRef = React.createRef();
     this.checkMailingRef = React.createRef();
     this.addAvatarRef = React.createRef();
     this.formRef = React.createRef();
@@ -61,38 +60,23 @@ export default class UserCreatingForm extends Component<IUserCreatingFormProps, 
     this.getAvatarPhoto();
     this.setState({
       name: this.inputNameRef?.current?.value ?? '',
-      gender: this.switcherRef.current?.checked ? 'Male' : 'Femail',
+      gender: this.switcherGenderRef.current?.checked ? 'Male' : 'Femail',
       birthday: this.inputDateRef?.current?.value.split('-').reverse().join('.') ?? '',
       salary: this.selectSalaryRef?.current?.value ?? '',
       mailing: this.checkMailingRef?.current?.checked ?? true,
     });
   };
 
-  focusOnInvalidComponent(nameOfProp: string) {
-    switch (nameOfProp) {
-      case 'name':
-        this.inputNameRef?.current?.focus();
-        break;
-
-      case 'avatarPath':
-        this.addAvatarRef?.current?.focus();
-        break;
-    }
-  }
-
-  componentDidUpdate(prevProps: IUserCreatingFormProps, prevState: IUserCard) {
+  componentDidUpdate(prevProps: UserCreatingFormProps, prevState: IUserCard) {
     if (prevState !== this.state) {
-      const isValid = userFormValidator({
-        name: this.state.name,
-        avatarPath: this.state.avatarPath,
-      });
+      const isAvatar = this.addAvatarRef.current?.validity.valid;
+      const isName = this.inputNameRef.current?.validity.valid;
+      const { avatarPath } = this.state;
 
-      if (!isValid) {
+      if (isAvatar && isName && avatarPath) {
         this.props.onForm(this.state);
         this.formRef.current?.reset();
         this.setState(initialState);
-      } else {
-        this.focusOnInvalidComponent(isValid);
       }
     }
   }
@@ -103,10 +87,10 @@ export default class UserCreatingForm extends Component<IUserCreatingFormProps, 
         <TextInput
           labelType={mockText.labelUserName}
           placeholderText={mockText.placeholderUserName}
-          minNameLength="2"
-          maxNameLength="12"
+          minTextLength="2"
+          maxTextLength="12"
           required={true}
-          inputNameRef={this.inputNameRef}
+          inputTextRef={this.inputNameRef}
         />
         <DateInput
           labelType={mockText.labelUserBirthday}
@@ -115,15 +99,19 @@ export default class UserCreatingForm extends Component<IUserCreatingFormProps, 
           maxDate="2022-01-01"
           inputDateRef={this.inputDateRef}
         />
-        <Select labelType={mockText.labelUserSalary} selectSalaryRef={this.selectSalaryRef} />
+        <Select labelType={mockText.labelUserSalary} selectRef={this.selectSalaryRef} />
         <Switcher
           switcherType={mockText.switcherGender}
           optionOne={mockText.switcherGenderMale}
           optionTwo={mockText.switcherGenderFemale}
-          switcherRef={this.switcherRef}
+          switcherRef={this.switcherGenderRef}
         />
-        <Checkbox labelType={mockText.labelUserMailing} checkMailingRef={this.checkMailingRef} />
-        <FileUpload labelType={mockText.labelFileUpload} addAvatarRef={this.addAvatarRef} />
+        <Checkbox labelType={mockText.labelUserMailing} checkboxRef={this.checkMailingRef} />
+        <FileUpload
+          labelType={mockText.labelFileUpload}
+          required={true}
+          fileUploadRef={this.addAvatarRef}
+        />
         <input className="create-user-button" type="submit" value={mockText.createUserButton} />
       </form>
     );

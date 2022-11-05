@@ -1,11 +1,13 @@
-.salary-label {
-  .salary-select {
-    width: 100%;
-    outline: none;
-    border-radius: 5px;
-    padding: 2px 6px;
-    margin-top: 2px;
-    border: none;
-    cursor: pointer;
+.select {
+  .select__label {
+    .select__select {
+      width: 100%;
+      outline: none;
+      border-radius: 5px;
+      padding: 2px 6px;
+      margin-top: 2px;
+      border: none;
+      cursor: pointer;
+    }
   }
 }

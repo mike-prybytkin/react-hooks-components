@@ -20,6 +20,16 @@ code {
   flex-direction: column;
 
   .main__message_loading {
+    position: fixed;
+    top: 48%;
+    left: 48%;
+    background-color: $backgroundCreateUserFormColor;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+  }
+
+  .main__message_not-found {
     font-size: 1.2rem;
   }
 }

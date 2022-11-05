@@ -4,12 +4,12 @@ import AboutUs from 'pages/about-us/about-us';
 import Page404 from 'pages/404/404';
 import Main from 'pages/main/main';
 import Header from 'components/header/header';
-import { IAppState } from './types';
+import { AppState } from './types';
 import mockText from 'mocks/text';
 import Form from 'pages/form/form';
 import { IFetchData } from './types';
 
-class App extends React.Component<unknown, IAppState> {
+class App extends React.Component<unknown, AppState> {
   constructor(props: unknown) {
     super(props);
     this.state = {
@@ -62,7 +62,7 @@ class App extends React.Component<unknown, IAppState> {
     this.fetchData();
   }
 
-  componentDidUpdate(prevProps: Readonly<unknown>, prevState: Readonly<IAppState>): void {
+  componentDidUpdate(prevProps: Readonly<unknown>, prevState: Readonly<AppState>): void {
     if (
       prevState.querySearch !== this.state.querySearch ||
       prevState.queryPage !== this.state.queryPage
@@ -72,6 +72,7 @@ class App extends React.Component<unknown, IAppState> {
   }
 
   render() {
+    const { isLoading } = this.state;
     return (
       <div className="App" data-testid="app">
         <Header onSearch={this.onSearch} />
@@ -116,7 +117,7 @@ class App extends React.Component<unknown, IAppState> {
             />
             <Route path="/*" element={<Navigate to="/notFound" />} />
           </Routes>
-          {this.state.isLoading && <p className="main__message_loading">{mockText.loading}</p>}
+          {isLoading && <p className="main__message_loading">{mockText.loading}</p>}
         </main>
       </div>
     );

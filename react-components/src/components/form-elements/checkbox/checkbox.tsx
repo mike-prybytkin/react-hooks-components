@@ -8,11 +8,11 @@ class Checkbox extends Component<CheckboxProps> {
         <input
           className="checkbox__input"
           type="checkbox"
-          id="checkbox_mailing"
-          ref={this.props.checkMailingRef}
+          id="checkbox_form"
+          ref={this.props.checkboxRef}
           defaultChecked
         />
-        <label className="checkbox__label" htmlFor="checkbox_mailing">
+        <label className="checkbox__label" htmlFor="checkbox_form">
           {this.props.labelType}
         </label>
       </div>

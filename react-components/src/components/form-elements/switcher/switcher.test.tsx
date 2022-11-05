@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Switcher from './switcher';
-import mockText from '../../../mocks/text';
+import mockText from 'mocks/text';
 
 const setUp = () =>
   render(

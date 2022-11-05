@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import mockText from '../../../mocks/text';
+import mockText from 'mocks/text';
 import Checkbox from './checkbox';
 
 const setUp = () => {
-  return render(<Checkbox labelType={mockText.labelUserMailing} checkMailingRef={undefined} />);
+  return render(<Checkbox labelType={mockText.labelUserMailing} checkboxRef={undefined} />);
 };
 
 describe('Checkbox component', () => {

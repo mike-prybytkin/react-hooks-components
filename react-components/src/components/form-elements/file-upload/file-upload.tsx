@@ -4,17 +4,20 @@ import { FileUploadProps } from './types';
 class FileUpload extends Component<FileUploadProps> {
   render() {
     return (
-      <label className="avatar-label">
-        <input
-          className="avatar-input"
-          type="file"
-          id="user-avatar"
-          name="user-avatar"
-          accept="image/*"
-          ref={this.props.addAvatarRef}
-        />
-        {this.props.labelType}
-      </label>
+      <div className="file-upload">
+        <label className="file-upload__label">
+          <input
+            className="file-upload__input"
+            type="file"
+            id="user-avatar"
+            name="user-avatar"
+            accept="image/*"
+            ref={this.props.fileUploadRef}
+            required={this.props.required}
+          />
+          {this.props.labelType}
+        </label>
+      </div>
     );
   }
 }
