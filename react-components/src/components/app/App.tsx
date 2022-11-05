@@ -49,6 +49,7 @@ class App extends React.Component<unknown, AppState> {
   }
 
   render() {
+    const { isLoading } = this.state;
     return (
       <div className="App" data-testid="app">
         <Header cards={this.state.data} onSearch={this.onSearch} />
@@ -84,7 +85,8 @@ class App extends React.Component<unknown, AppState> {
             />
             <Route path="/*" element={<Navigate to="/notFound" />} />
           </Routes>
-          {this.state.isLoading && <p className="main__message_loading">{mockText.loading}</p>}
+          {isLoading && <p className="main__message_loading">{mockText.loading}</p>}
+          {/* Следующий компонент в третьей таске я выношу в отрисовку карточек. Трогать не буду */}
           {this.state.currentData.length === 0 && !this.state.isLoading && (
             <p className="main__message_not-found">{mockText.itemNotFound}</p>
           )}
