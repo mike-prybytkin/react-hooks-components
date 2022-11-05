@@ -1,4 +1,4 @@
 export interface FileUploadProps {
   labelType: string;
-  addAvatarRef: React.RefObject<HTMLInputElement> | undefined;
+  fileUploadRef: React.RefObject<HTMLInputElement> | undefined;
 }

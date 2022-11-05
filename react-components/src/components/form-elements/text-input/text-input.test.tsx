@@ -7,10 +7,10 @@ const setUp = () =>
   render(
     <TextInput
       labelType={mockText.labelUserName}
-      inputNameRef={undefined}
+      inputTextRef={undefined}
       placeholderText={mockText.placeholderUserName}
-      minNameLength="2"
-      maxNameLength="12"
+      minTextLength="2"
+      maxTextLength="12"
       required={true}
     />
   );

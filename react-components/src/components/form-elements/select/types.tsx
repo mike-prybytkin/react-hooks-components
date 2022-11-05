@@ -1,4 +1,4 @@
 export interface SelectProps {
   labelType: string;
-  selectSalaryRef: React.RefObject<HTMLSelectElement> | undefined;
+  selectRef: React.RefObject<HTMLSelectElement> | undefined;
 }

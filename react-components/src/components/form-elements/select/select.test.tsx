@@ -3,8 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Select from './select';
 import mockText from 'mocks/text';
 
-const setUp = () =>
-  render(<Select selectSalaryRef={undefined} labelType={mockText.labelUserSalary} />);
+const setUp = () => render(<Select selectRef={undefined} labelType={mockText.labelUserSalary} />);
 
 describe('Select component', () => {
   it('should correctly render select', () => {

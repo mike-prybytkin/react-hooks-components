@@ -1,8 +1,8 @@
 export interface TextInputProps {
   placeholderText: string;
   labelType: string;
-  minNameLength: string;
-  maxNameLength: string;
+  minTextLength: string;
+  maxTextLength: string;
   required: boolean;
-  inputNameRef: React.RefObject<HTMLInputElement> | undefined;
+  inputTextRef: React.RefObject<HTMLInputElement> | undefined;
 }

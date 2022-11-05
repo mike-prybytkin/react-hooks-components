@@ -5,8 +5,8 @@ class Switcher extends Component<SwitcherProps> {
   render() {
     return (
       <div className="switcher-wrapper">
-        <p className="switcher-header">{this.props.switcherType}</p>
-        <div className="switch-field">
+        <p className="switcher-wrapper__header">{this.props.switcherType}</p>
+        <div className="switcher-wrapper__field">
           <input
             type="radio"
             id="radio-male"

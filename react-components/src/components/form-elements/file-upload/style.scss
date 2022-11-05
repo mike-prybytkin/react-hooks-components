@@ -1,14 +1,16 @@
-.avatar-label {
-  cursor: pointer;
-  .avatar-input {
-    margin-right: 5px;
+.file-upload {
+  .file-upload__label {
     cursor: pointer;
-    width: 134px;
-    border-radius: 4px;
-    outline: none;
-
-    &:focus {
-      box-shadow: 0px 0px 5px 2px $shadowColor;
+    .file-upload__input {
+      margin-right: 5px;
+      cursor: pointer;
+      width: 134px;
+      border-radius: 4px;
+      outline: none;
+  
+      &:focus {
+        box-shadow: 0px 0px 5px 2px $shadowColor;
+      }
     }
   }
 }

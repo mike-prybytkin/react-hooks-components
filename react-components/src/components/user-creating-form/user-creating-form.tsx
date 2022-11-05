@@ -103,10 +103,10 @@ export default class UserCreatingForm extends Component<UserCreatingFormProps, I
         <TextInput
           labelType={mockText.labelUserName}
           placeholderText={mockText.placeholderUserName}
-          minNameLength="2"
-          maxNameLength="12"
+          minTextLength="2"
+          maxTextLength="12"
           required={true}
-          inputNameRef={this.inputNameRef}
+          inputTextRef={this.inputNameRef}
         />
         <DateInput
           labelType={mockText.labelUserBirthday}
@@ -115,15 +115,15 @@ export default class UserCreatingForm extends Component<UserCreatingFormProps, I
           maxDate="2022-01-01"
           inputDateRef={this.inputDateRef}
         />
-        <Select labelType={mockText.labelUserSalary} selectSalaryRef={this.selectSalaryRef} />
+        <Select labelType={mockText.labelUserSalary} selectRef={this.selectSalaryRef} />
         <Switcher
           switcherType={mockText.switcherGender}
           optionOne={mockText.switcherGenderMale}
           optionTwo={mockText.switcherGenderFemale}
           switcherRef={this.switcherRef}
         />
-        <Checkbox labelType={mockText.labelUserMailing} checkMailingRef={this.checkMailingRef} />
-        <FileUpload labelType={mockText.labelFileUpload} addAvatarRef={this.addAvatarRef} />
+        <Checkbox labelType={mockText.labelUserMailing} checkboxRef={this.checkMailingRef} />
+        <FileUpload labelType={mockText.labelFileUpload} fileUploadRef={this.addAvatarRef} />
         <input className="create-user-button" type="submit" value={mockText.createUserButton} />
       </form>
     );
