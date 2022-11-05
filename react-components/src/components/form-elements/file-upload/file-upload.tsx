@@ -13,6 +13,7 @@ class FileUpload extends Component<FileUploadProps> {
             name="user-avatar"
             accept="image/*"
             ref={this.props.fileUploadRef}
+            required={this.props.required}
           />
           {this.props.labelType}
         </label>
