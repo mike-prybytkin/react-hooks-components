@@ -6,12 +6,12 @@ exports[`Switcher component should create snapshot 1`] = `
     class="switcher-wrapper"
   >
     <p
-      class="switcher-header"
+      class="switcher-wrapper__header"
     >
       Gender:
     </p>
     <div
-      class="switch-field"
+      class="switcher-wrapper__field"
     >
       <input
         checked=""
