@@ -63,37 +63,33 @@ export default class Pagination extends Component<PaginationProps, PaginationSta
   };
 
   render() {
-    return this.props.allPages > 1 ? (
+    const { allPages } = this.props;
+    const isFirstPage = this.state.currentPage === 1;
+    const isLastPage = this.state.currentPage === this.props.allPages;
+    const { arrayForButtons } = this.state;
+    const { currentPage } = this.state;
+
+    return allPages > 1 ? (
       <div className="pagination-wrapper">
-        <button
-          className="pagination-prev-button"
-          onClick={this.prevPage}
-          disabled={this.state.currentPage === 1}
-        >
+        <button className="pagination-prev-button" onClick={this.prevPage} disabled={isFirstPage}>
           {mockText.prevButton}
         </button>
         <div className="numerical-buttons-wrapper">
-          {this.state.arrayForButtons.map((numButton) => {
+          {arrayForButtons.map((numButton) => {
             return (
               <button
                 key={numButton}
                 className={
-                  numButton === this.state.currentPage
-                    ? 'numerical-button active'
-                    : 'numerical-button'
+                  numButton === currentPage ? 'numerical-button active' : 'numerical-button'
                 }
-                onClick={(event) => this.changePage(event)}
+                onClick={this.changePage}
               >
                 {numButton}
               </button>
             );
           })}
         </div>
-        <button
-          className="pagination-next-button"
-          onClick={this.nextPage}
-          disabled={this.state.currentPage === this.props.allPages}
-        >
+        <button className="pagination-next-button" onClick={this.nextPage} disabled={isLastPage}>
           {mockText.nextButton}
         </button>
       </div>

@@ -16,7 +16,8 @@ export class ProductCardList extends Component<CardListProps> {
   }
 
   render() {
-    return this.props.cards.length >= 1 ? (
+    const isCards = this.props.cards.length >= 1;
+    return isCards ? (
       <React.Fragment>
         <div className="cards-wrapper">{this.renderCards()}</div>
         <Pagination

@@ -25,6 +25,13 @@ const mockText = {
   productCardButton: 'Learn more',
   prevButton: 'prev',
   nextButton: 'next',
+  userSex: 'sex:',
+  userBDay: 'b-day:',
+  userSalary: 'salary:',
+  subscribed: 'Subscribed',
+  unsubscribed: 'Unsubscribed',
+  toMailings: 'to mailings!',
+  fromMailings: 'from mailings...',
 };
 
 export default mockText;
