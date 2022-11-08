@@ -25,14 +25,14 @@ export default class Form extends Component<FormProps, FormState> {
   };
 
   render() {
-    const isUserCards = this.state.userCards && this.state.userCards.length > 0;
+    const hasUserCards = this.state.userCards && this.state.userCards.length > 0;
     return (
       <div className="form-wrapper">
         <h1 className="form-content-header">{this.props.heading}</h1>
         <div className="form-content-wrapper">
           <CreateUserForm onForm={this.onForm} />
 
-          {isUserCards ? (
+          {hasUserCards ? (
             <UserCardList cards={this.state.userCards} />
           ) : (
             <p className="form-content-message">{this.props.noCreatedUserMessage}</p>

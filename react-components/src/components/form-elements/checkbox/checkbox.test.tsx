@@ -4,7 +4,9 @@ import mockText from 'mocks/text';
 import Checkbox from './checkbox';
 
 const setUp = () => {
-  return render(<Checkbox labelType={mockText.labelUserMailing} checkboxRef={undefined} />);
+  return render(
+    <Checkbox labelType={mockText.labelUserMailing} checkboxRef={undefined} id={'test'} />
+  );
 };
 
 describe('Checkbox component', () => {

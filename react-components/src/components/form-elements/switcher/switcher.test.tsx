@@ -10,6 +10,8 @@ const setUp = () =>
       switcherType={mockText.switcherGender}
       optionOne={mockText.switcherGenderMale}
       optionTwo={mockText.switcherGenderFemale}
+      idRadioOne={'one'}
+      idRadioTwo={'two'}
     />
   );
 

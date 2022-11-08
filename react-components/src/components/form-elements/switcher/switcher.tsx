@@ -9,16 +9,21 @@ class Switcher extends Component<SwitcherProps> {
         <div className="switcher-wrapper__field">
           <input
             type="radio"
-            id="radio-male"
+            id={this.props.idRadioOne}
             name="switch-one"
             value={this.props.optionOne}
             ref={this.props.switcherRef}
             defaultChecked
           />
-          <label htmlFor="radio-male">{this.props.optionOne}</label>
+          <label htmlFor={this.props.idRadioOne}>{this.props.optionOne}</label>
 
-          <input type="radio" id="radio-female" name="switch-one" value={this.props.optionTwo} />
-          <label htmlFor="radio-female">{this.props.optionTwo}</label>
+          <input
+            type="radio"
+            id={this.props.idRadioTwo}
+            name="switch-one"
+            value={this.props.optionTwo}
+          />
+          <label htmlFor={this.props.idRadioTwo}>{this.props.optionTwo}</label>
         </div>
       </div>
     );
