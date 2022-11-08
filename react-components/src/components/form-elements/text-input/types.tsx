@@ -5,4 +5,5 @@ export interface TextInputProps {
   maxTextLength: string;
   required: boolean;
   inputTextRef: React.RefObject<HTMLInputElement> | undefined;
+  id: string;
 }

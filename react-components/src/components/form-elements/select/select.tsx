@@ -7,7 +7,7 @@ class Select extends Component<SelectProps> {
       <div className="select">
         <label className="select__label">
           {this.props.labelType}
-          <select className="select__select" ref={this.props.selectRef}>
+          <select className="select__select" ref={this.props.selectRef} id={this.props.id}>
             <option disabled>Please choose an option</option>
             <option value="less than 100$">less than 100$</option>
             <option value="100-199$">100-199$</option>

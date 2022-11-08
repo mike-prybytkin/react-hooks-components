@@ -12,6 +12,7 @@ const setUp = () =>
       minTextLength="2"
       maxTextLength="12"
       required={true}
+      id={'test'}
     />
   );
 

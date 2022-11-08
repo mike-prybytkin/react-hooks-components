@@ -15,6 +15,7 @@ class TextInput extends Component<TextInputProps> {
             maxLength={+this.props.maxTextLength}
             required={this.props.required}
             ref={this.props.inputTextRef}
+            id={this.props.id}
           />
         </label>
       </div>

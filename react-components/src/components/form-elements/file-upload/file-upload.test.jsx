@@ -4,7 +4,9 @@ import mockText from '../../../mocks/text';
 import FileUpload from './file-upload';
 
 const setUp = () => {
-  return render(<FileUpload labelType={mockText.labelFileUpload} fileUploadRef={undefined} />);
+  return render(
+    <FileUpload labelType={mockText.labelFileUpload} fileUploadRef={undefined} id={'test'} />
+  );
 };
 
 describe('FileUpload component', () => {

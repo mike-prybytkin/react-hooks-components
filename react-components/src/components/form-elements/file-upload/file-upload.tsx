@@ -9,8 +9,8 @@ class FileUpload extends Component<FileUploadProps> {
           <input
             className="file-upload__input"
             type="file"
-            id="user-avatar"
-            name="user-avatar"
+            id={this.props.id}
+            name={this.props.id}
             accept="image/*"
             ref={this.props.fileUploadRef}
             required={this.props.required}

@@ -69,11 +69,11 @@ export default class UserCreatingForm extends Component<UserCreatingFormProps, I
 
   componentDidUpdate(prevProps: UserCreatingFormProps, prevState: IUserCard) {
     if (prevState !== this.state) {
-      const isAvatar = this.addAvatarRef.current?.validity.valid;
-      const isName = this.inputNameRef.current?.validity.valid;
+      const isValidAvatar = this.addAvatarRef.current?.validity.valid;
+      const isValidName = this.inputNameRef.current?.validity.valid;
       const { avatarPath } = this.state;
 
-      if (isAvatar && isName && avatarPath) {
+      if (isValidAvatar && isValidName && avatarPath) {
         this.props.onForm(this.state);
         this.formRef.current?.reset();
         this.setState(initialState);
@@ -91,6 +91,7 @@ export default class UserCreatingForm extends Component<UserCreatingFormProps, I
           maxTextLength="12"
           required={true}
           inputTextRef={this.inputNameRef}
+          id={'name-user-form'}
         />
         <DateInput
           labelType={mockText.labelUserBirthday}
@@ -98,19 +99,31 @@ export default class UserCreatingForm extends Component<UserCreatingFormProps, I
           minDate="1922-01-01"
           maxDate="2022-01-01"
           inputDateRef={this.inputDateRef}
+          id={'b-day-user-form'}
         />
-        <Select labelType={mockText.labelUserSalary} selectRef={this.selectSalaryRef} />
+        <Select
+          labelType={mockText.labelUserSalary}
+          selectRef={this.selectSalaryRef}
+          id={'salary-user-form'}
+        />
         <Switcher
           switcherType={mockText.switcherGender}
           optionOne={mockText.switcherGenderMale}
           optionTwo={mockText.switcherGenderFemale}
           switcherRef={this.switcherGenderRef}
+          idRadioOne={'radio-male-user-form'}
+          idRadioTwo={'radio-female-user-form'}
         />
-        <Checkbox labelType={mockText.labelUserMailing} checkboxRef={this.checkMailingRef} />
+        <Checkbox
+          labelType={mockText.labelUserMailing}
+          checkboxRef={this.checkMailingRef}
+          id={'mailing-user-form'}
+        />
         <FileUpload
           labelType={mockText.labelFileUpload}
           required={true}
           fileUploadRef={this.addAvatarRef}
+          id={'avatar-user-form'}
         />
         <input className="create-user-button" type="submit" value={mockText.createUserButton} />
       </form>

@@ -4,4 +4,5 @@ export interface DateInputProps {
   minDate: string;
   maxDate: string;
   inputDateRef: React.RefObject<HTMLInputElement> | undefined;
+  id: string;
 }

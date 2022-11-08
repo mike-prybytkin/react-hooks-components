@@ -14,6 +14,7 @@ class DateInput extends Component<DateInputProps> {
             min={this.props.minDate}
             max={this.props.maxDate}
             ref={this.props.inputDateRef}
+            id={this.props.id}
           />
         </label>
       </div>
