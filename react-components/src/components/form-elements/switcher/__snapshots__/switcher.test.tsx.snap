@@ -15,24 +15,24 @@ exports[`Switcher component should create snapshot 1`] = `
     >
       <input
         checked=""
-        id="radio-male"
+        id="one"
         name="switch-one"
         type="radio"
         value="Male"
       />
       <label
-        for="radio-male"
+        for="one"
       >
         Male
       </label>
       <input
-        id="radio-female"
+        id="two"
         name="switch-one"
         type="radio"
         value="Female"
       />
       <label
-        for="radio-female"
+        for="two"
       >
         Female
       </label>

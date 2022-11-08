@@ -11,8 +11,8 @@ exports[`FileUpload component should create snapshot 1`] = `
       <input
         accept="image/*"
         class="file-upload__input"
-        id="user-avatar"
-        name="user-avatar"
+        id="test"
+        name="test"
         type="file"
       />
       Add your photo

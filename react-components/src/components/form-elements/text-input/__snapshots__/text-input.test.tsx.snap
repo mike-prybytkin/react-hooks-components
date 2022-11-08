@@ -11,6 +11,7 @@ exports[`TextInput component should create snapshot 1`] = `
       Name:
       <input
         class="text-input__input"
+        id="test"
         maxlength="12"
         minlength="2"
         placeholder="Your Name"

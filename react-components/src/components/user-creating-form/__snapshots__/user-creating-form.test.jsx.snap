@@ -14,6 +14,7 @@ exports[`User Creating Form component should create snapshot 1`] = `
         Name:
         <input
           class="text-input__input"
+          id="name-user-form"
           maxlength="12"
           minlength="2"
           placeholder="Your Name"
@@ -31,6 +32,7 @@ exports[`User Creating Form component should create snapshot 1`] = `
         Birthday:
         <input
           class="date-input__input"
+          id="b-day-user-form"
           max="2022-01-01"
           min="1922-01-01"
           type="date"
@@ -47,6 +49,7 @@ exports[`User Creating Form component should create snapshot 1`] = `
         Your monthly income:
         <select
           class="select__select"
+          id="salary-user-form"
         >
           <option
             disabled=""
@@ -99,24 +102,24 @@ exports[`User Creating Form component should create snapshot 1`] = `
       >
         <input
           checked=""
-          id="radio-male"
+          id="radio-male-user-form"
           name="switch-one"
           type="radio"
           value="Male"
         />
         <label
-          for="radio-male"
+          for="radio-male-user-form"
         >
           Male
         </label>
         <input
-          id="radio-female"
+          id="radio-female-user-form"
           name="switch-one"
           type="radio"
           value="Female"
         />
         <label
-          for="radio-female"
+          for="radio-female-user-form"
         >
           Female
         </label>
@@ -128,12 +131,12 @@ exports[`User Creating Form component should create snapshot 1`] = `
       <input
         checked=""
         class="checkbox__input"
-        id="checkbox_form"
+        id="mailing-user-form"
         type="checkbox"
       />
       <label
         class="checkbox__label"
-        for="checkbox_form"
+        for="mailing-user-form"
       >
         Receive mailing
       </label>
@@ -147,8 +150,8 @@ exports[`User Creating Form component should create snapshot 1`] = `
         <input
           accept="image/*"
           class="file-upload__input"
-          id="user-avatar"
-          name="user-avatar"
+          id="avatar-user-form"
+          name="avatar-user-form"
           required=""
           type="file"
         />

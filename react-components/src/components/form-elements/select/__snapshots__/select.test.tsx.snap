@@ -11,6 +11,7 @@ exports[`Select component should create snapshot 1`] = `
       Your monthly income:
       <select
         class="select__select"
+        id="test"
       >
         <option
           disabled=""
