@@ -1,58 +1,31 @@
-import React from 'react';
-import { LiveSearchState } from './types';
+import React, { useEffect, useState } from 'react';
 import { LiveSearchProps } from './types';
+import { getLocalStorage, setLocalStorage } from './utils/local-storage';
 
-class LiveSearch extends React.Component<LiveSearchProps, LiveSearchState> {
-  constructor(props: LiveSearchProps) {
-    super(props);
-    this.state = {
-      value: '',
-    };
-  }
+const LiveSearch = (props: LiveSearchProps) => {
+  const [value, setValue] = useState(getLocalStorage());
+  const { onSearch } = props;
 
-  searchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target) {
-      this.setState({ value: event.target.value });
-    }
-  };
+  useEffect(() => {
+    onSearch(value);
+    setLocalStorage(value);
+  }, [value, onSearch]);
 
-  setLocalStorage(searchFieldText: string) {
-    localStorage.setItem('searchValue', searchFieldText);
-  }
-
-  componentDidMount(): void {
-    this.setState({
-      value: localStorage.getItem('searchValue') ?? '',
-    });
-  }
-
-  componentDidUpdate(
-    prevProps: Readonly<LiveSearchProps>,
-    prevState: Readonly<LiveSearchState>
-  ): void {
-    if (prevState.value !== this.state.value) {
-      this.props.onSearch(this.state.value);
-      this.setLocalStorage(this.state.value);
-    }
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <div className="search-container">
-          <form className="search-form">
-            <span>&#128269;</span>
-            <input
-              className="search"
-              placeholder={this.props.placeholderText}
-              value={this.state.value}
-              onChange={this.searchTextChange}
-            />
-          </form>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <div className="search-container">
+        <form className="search-form">
+          <span>&#128269;</span>
+          <input
+            className="search"
+            placeholder={props.placeholderText}
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+          />
+        </form>
+      </div>
+    </React.Fragment>
+  );
+};
 
 export default LiveSearch;

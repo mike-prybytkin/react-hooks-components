@@ -2,11 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './header';
-import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
 
-const setUp = () =>
-  render(<Header cards={mockCards} onSearch={mockCards} />, { wrapper: BrowserRouter });
+const setUp = () => render(<Header onSearch={jest.fn()} />, { wrapper: BrowserRouter });
 
 describe('Header component', () => {
   it('should render links container', () => {

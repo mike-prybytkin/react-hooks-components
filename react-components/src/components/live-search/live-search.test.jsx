@@ -2,20 +2,12 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import LiveSearch from './live-search';
-import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
 
 const setUp = () =>
-  render(
-    <LiveSearch
-      cards={mockCards}
-      onSearch={mockCards}
-      placeholderText={mockText.searchPlaceholder}
-    />,
-    {
-      wrapper: BrowserRouter,
-    }
-  );
+  render(<LiveSearch onSearch={jest.fn()} placeholderText={mockText.searchPlaceholder} />, {
+    wrapper: BrowserRouter,
+  });
 
 describe('Live Search component', () => {
   it('should correctly render input', () => {
