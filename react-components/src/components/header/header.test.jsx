@@ -3,8 +3,20 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './header';
 import mockText from '../../mocks/text';
+import { AppContext } from '../app/app';
 
-const setUp = () => render(<Header onSearch={jest.fn()} />, { wrapper: BrowserRouter });
+const setUp = () => {
+  const onSearch = jest.fn();
+  const updateQuery = jest.fn();
+  return render(
+    <AppContext.Provider value={{ onSearch, updateQuery }}>
+      <Header />
+    </AppContext.Provider>,
+    {
+      wrapper: BrowserRouter,
+    }
+  );
+};
 
 describe('Header component', () => {
   it('should render links container', () => {

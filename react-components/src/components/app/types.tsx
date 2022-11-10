@@ -9,3 +9,8 @@ export interface IFetchData {
   };
   results: IProductCard[];
 }
+
+export interface IAppContext {
+  onSearch: (querySearch: string) => void;
+  updateQuery: (querySearch: number) => void;
+}

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { LiveSearchProps } from './types';
 import { getLocalStorage, setLocalStorage } from './utils/local-storage';
+import { AppContext } from 'components/app/App';
 
 const LiveSearch = (props: LiveSearchProps) => {
+  const context = useContext(AppContext);
   const [value, setValue] = useState(getLocalStorage());
-  const { onSearch } = props;
+  const { onSearch } = context;
 
   useEffect(() => {
     onSearch(value);
