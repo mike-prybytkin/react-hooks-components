@@ -79,11 +79,6 @@ exports[`Testing Application should renders correctly application 1`] = `
     >
       Sorry, item not found...
     </p>
-    <p
-      className="main__message_loading"
-    >
-      Loading ...
-    </p>
   </main>
 </div>
 `;
