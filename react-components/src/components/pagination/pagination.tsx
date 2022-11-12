@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import mockText from 'mocks/text';
-import { AppContext } from 'components/app/App';
+import { StoreProviderContext } from 'components/store/store-provider';
 
 const Pagination = () => {
-  const context = useContext(AppContext);
+  const context = useContext(StoreProviderContext);
   const { queryPage, allPages, updateQuery } = context;
   const [arrayForButtons, setArrayForButtons] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(1);

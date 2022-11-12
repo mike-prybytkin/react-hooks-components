@@ -2,16 +2,16 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Main from './main';
-import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
-import { AppContext } from '../../components/app/App';
+import { StoreProviderContext } from '../../components/store/store-provider';
+import { mockCards } from '../../mocks/cards';
 
 const setUp = () => {
   const updateQuery = jest.fn();
   return render(
-    <AppContext.Provider value={{ updateQuery }}>
-      <Main cards={mockCards} heading={mockText.headingMain} />
-    </AppContext.Provider>,
+    <StoreProviderContext.Provider value={{ updateQuery, data: mockCards }}>
+      <Main heading={mockText.headingMain} />
+    </StoreProviderContext.Provider>,
     {
       wrapper: BrowserRouter,
     }

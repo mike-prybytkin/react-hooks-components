@@ -71,11 +71,48 @@ exports[`App should create snapshot 1`] = `
       <h1>
         Welcome to us!
       </h1>
-      <p
-        class="not-found-items-message"
+      <div
+        class="cards-wrapper"
       >
-        Sorry, item not found...
-      </p>
+        <div
+          class="card"
+        >
+          <img
+            alt="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+            class="card__img"
+            src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+          />
+          <h3
+            class="card__title"
+          >
+            Rick Sanchez
+          </h3>
+          <button
+            class="card__button"
+          >
+            Learn more
+          </button>
+        </div>
+        <div
+          class="card"
+        >
+          <img
+            alt="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+            class="card__img"
+            src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+          />
+          <h3
+            class="card__title"
+          >
+            Morty Smith
+          </h3>
+          <button
+            class="card__button"
+          >
+            Learn more
+          </button>
+        </div>
+      </div>
       <p
         class="main__message_loading"
       >

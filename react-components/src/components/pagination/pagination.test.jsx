@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Pagination from './pagination';
-import { AppContext } from '../../components/app/App';
+import { StoreProviderContext } from '../store/store-provider';
 
 const setUp = (page, allPages) => {
   const updateQuery = jest.fn();
   return render(
-    <AppContext.Provider value={{ updateQuery, queryPage: page, allPages: allPages }}>
+    <StoreProviderContext.Provider value={{ updateQuery, queryPage: page, allPages: allPages }}>
       <Pagination />
-    </AppContext.Provider>
+    </StoreProviderContext.Provider>
   );
 };
 

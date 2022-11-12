@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './app';
 import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
+import { StoreProviderContext } from '../store/store-provider';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
@@ -11,7 +12,23 @@ global.fetch = jest.fn(() =>
   })
 );
 
-const setUp = () => render(<App />, { wrapper: BrowserRouter });
+const setUp = () => {
+  const onSearch = jest.fn();
+  const updateQuery = jest.fn();
+  const setData = jest.fn();
+  const setQueryPage = jest.fn();
+  const setAllPages = jest.fn();
+  return render(
+    <StoreProviderContext.Provider
+      value={{ onSearch, updateQuery, data: mockCards, setData, setQueryPage, setAllPages }}
+    >
+      <App />
+    </StoreProviderContext.Provider>,
+    {
+      wrapper: BrowserRouter,
+    }
+  );
+};
 
 describe('App', () => {
   it('should correctly render app structure', async () => {

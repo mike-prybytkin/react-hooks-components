@@ -3,15 +3,15 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './header';
 import mockText from '../../mocks/text';
-import { AppContext } from '../app/app';
+import { StoreProviderContext } from '../store/store-provider';
 
 const setUp = () => {
   const onSearch = jest.fn();
   const updateQuery = jest.fn();
   return render(
-    <AppContext.Provider value={{ onSearch, updateQuery }}>
+    <StoreProviderContext.Provider value={{ onSearch, updateQuery }}>
       <Header />
-    </AppContext.Provider>,
+    </StoreProviderContext.Provider>,
     {
       wrapper: BrowserRouter,
     }

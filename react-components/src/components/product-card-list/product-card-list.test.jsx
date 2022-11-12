@@ -2,14 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ProductCardList from './product-card-list';
 import { mockCards } from '../../mocks/cards';
-import { AppContext } from '../../components/app/App';
+import { StoreProviderContext } from '../store/store-provider';
 
 const setUp = (props) => {
   const updateQuery = jest.fn();
   return render(
-    <AppContext.Provider value={{ updateQuery }}>
+    <StoreProviderContext.Provider value={{ updateQuery, data: props }}>
       <ProductCardList cards={props} />
-    </AppContext.Provider>
+    </StoreProviderContext.Provider>
   );
 };
 

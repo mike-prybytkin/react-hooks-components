@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ProductCard from 'components/product-card/product-card';
-import { CardListProps } from './types';
 import mockText from 'mocks/text';
 import Pagination from 'components/pagination/pagination';
+import { StoreProviderContext } from 'components/store/store-provider';
 
-const ProductCardList = (props: CardListProps) => {
+const ProductCardList = () => {
+  const context = useContext(StoreProviderContext);
+  const { data } = context;
   const renderCards = () => {
-    return props.cards.map((card) => (
+    return data.map((card) => (
       <ProductCard buttonText={mockText.productCardButton} card={card} key={card.id} />
     ));
   };
 
-  const hasCards = props.cards.length >= 1;
+  const hasCards = data.length >= 1;
   return hasCards ? (
     <React.Fragment>
       <div className="cards-wrapper">{renderCards()}</div>
