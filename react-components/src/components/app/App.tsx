@@ -57,7 +57,7 @@ const App = () => {
     setQuerySearch(querySearch);
   };
 
-  const value: IAppContext = { onSearch, updateQuery };
+  const value: IAppContext = { onSearch, updateQuery, queryPage, allPages, cardsLimit };
 
   return (
     <AppContext.Provider value={value}>
@@ -65,19 +65,7 @@ const App = () => {
         <Header />
         <main className="main">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  cards={data}
-                  heading={mockText.headingMain}
-                  queryPage={queryPage}
-                  allPages={allPages}
-                  cardsLimit={cardsLimit}
-                  updateQuery={updateQuery}
-                />
-              }
-            />
+            <Route path="/" element={<Main cards={data} heading={mockText.headingMain} />} />
             <Route
               path="/about"
               element={

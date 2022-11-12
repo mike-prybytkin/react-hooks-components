@@ -15,12 +15,7 @@ const ProductCardList = (props: CardListProps) => {
   return hasCards ? (
     <React.Fragment>
       <div className="cards-wrapper">{renderCards()}</div>
-      <Pagination
-        queryPage={props.queryPage}
-        allPages={props.allPages}
-        cardsLimit={props.cardsLimit}
-        updateQuery={props.updateQuery}
-      />
+      <Pagination />
     </React.Fragment>
   ) : (
     <p className="not-found-items-message">{mockText.itemNotFound}</p>

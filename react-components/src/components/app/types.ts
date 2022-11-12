@@ -13,4 +13,7 @@ export interface IFetchData {
 export interface IAppContext {
   onSearch: (querySearch: string) => void;
   updateQuery: (querySearch: number) => void;
+  queryPage: number;
+  allPages: number;
+  cardsLimit: number;
 }

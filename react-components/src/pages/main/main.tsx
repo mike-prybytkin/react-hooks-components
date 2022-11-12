@@ -6,13 +6,7 @@ const Main = (props: MainProps) => {
   return (
     <React.Fragment>
       <h1>{props.heading}</h1>
-      <CardList
-        cards={props.cards}
-        queryPage={props.queryPage}
-        allPages={props.allPages}
-        cardsLimit={props.cardsLimit}
-        updateQuery={props.updateQuery}
-      />
+      <CardList cards={props.cards} />
     </React.Fragment>
   );
 };
