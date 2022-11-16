@@ -7,7 +7,11 @@ const UserCardList = (props: UserCardListProps) => {
     return props.cards.map((card) => <UserCard card={card} key={card.avatarPath.slice(30, 70)} />);
   };
 
-  return <div className="user-cards-wrapper">{renderCards()}</div>;
+  return (
+    <div className="user-cards-wrapper" data-testid="user-cards-wrapper">
+      {renderCards()}
+    </div>
+  );
 };
 
 export default UserCardList;
