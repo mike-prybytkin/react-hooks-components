@@ -60,6 +60,7 @@ exports[`Testing Application should renders correctly application 1`] = `
           🔍
         </span>
         <input
+          aria-label="search-input"
           className="search"
           onChange={[Function]}
           placeholder="Search..."

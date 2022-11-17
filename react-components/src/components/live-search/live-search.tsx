@@ -23,6 +23,7 @@ const LiveSearch = (props: LiveSearchProps) => {
             placeholder={props.placeholderText}
             value={value}
             onChange={(event) => setValue(event.target.value)}
+            aria-label="search-input"
           />
         </form>
       </div>
