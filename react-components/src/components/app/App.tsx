@@ -8,6 +8,7 @@ import mockText from 'mocks/text';
 import Form from 'pages/form/form';
 import { IFetchData, IAppContext } from './types';
 import { StoreProviderContext } from 'components/store/store-provider';
+import API from 'api/api';
 
 export const AppContext = createContext({} as IAppContext);
 
@@ -18,18 +19,15 @@ const App = () => {
 
   const [fetchError, setFetchError] = useState<unknown>('');
 
-  const getFetchUrl = useCallback(() => {
-    const BASE_URL = `https://rickandmortyapi.com/api/character/`;
-    return `${BASE_URL}?name=${querySearch}&page=${queryPage}`;
+  const getFetchData = useCallback(() => {
+    return API(querySearch, queryPage);
   }, [querySearch, queryPage]);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(getFetchUrl());
-        const fetchData: IFetchData = await response.json();
-
+        const fetchData: IFetchData = await getFetchData();
         setData(fetchData.results);
         setAllPages(fetchData.info.pages);
         setIsLoading(false);
@@ -39,9 +37,9 @@ const App = () => {
         setIsLoading(false);
         setQueryPage(1);
       }
-    }
+    };
     fetchData();
-  }, [getFetchUrl, setAllPages, setData, setIsLoading, setQueryPage]);
+  }, [getFetchData, setAllPages, setData, setIsLoading, setQueryPage]);
 
   useEffect(() => {
     console.log(fetchError);
