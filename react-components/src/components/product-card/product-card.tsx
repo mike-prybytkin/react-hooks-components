@@ -63,7 +63,9 @@ const ProductCard = (props: ProductCardProps) => {
     <React.Fragment>
       <div className="card">
         <img className="card__img" src={card.image} alt={card.image} />
-        <h3 className="card__title">{card.name}</h3>
+        <div className="card__wrapper-title">
+          <h3 className="card__wrapper-title-text">{card.name}</h3>
+        </div>
         <button className="card__button" onClick={buttonHandler}>
           {buttonText}
         </button>

@@ -18,9 +18,18 @@ const setUp = () => {
   const setData = jest.fn();
   const setQueryPage = jest.fn();
   const setAllPages = jest.fn();
+  const setIsLoading = jest.fn();
   return render(
     <StoreProviderContext.Provider
-      value={{ onSearch, updateQuery, data: mockCards, setData, setQueryPage, setAllPages }}
+      value={{
+        onSearch,
+        updateQuery,
+        data: mockCards,
+        setData,
+        setQueryPage,
+        setAllPages,
+        setIsLoading,
+      }}
     >
       <App />
     </StoreProviderContext.Provider>,

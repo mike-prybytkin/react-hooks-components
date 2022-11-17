@@ -8,6 +8,7 @@ body {
   background: $mainColor;
   color: $lightColor;
   position: relative;
+  overflow-y: overlay;
 }
 
 code {

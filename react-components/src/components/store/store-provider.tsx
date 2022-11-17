@@ -1,6 +1,7 @@
 import React, { createContext, useState, ReactNode } from 'react';
 import { IStoreProviderContext } from './types';
 import { IProductCard } from 'share/types';
+import { getLocalStorage } from 'components/live-search/utils/local-storage';
 
 const StoreProviderContext = createContext({} as IStoreProviderContext);
 
@@ -11,10 +12,11 @@ interface StoreProviderProps {
 const StoreProvider = (props: StoreProviderProps) => {
   const { children } = props;
   const [data, setData] = useState<IProductCard[]>([]);
-  const [querySearch, setQuerySearch] = useState('');
+  const [querySearch, setQuerySearch] = useState(getLocalStorage());
   const [queryPage, setQueryPage] = useState(1);
   const [allPages, setAllPages] = useState(0);
   const cardsLimit = 20;
+  const [isLoading, setIsLoading] = useState(true);
 
   const updateQuery = (queryPage: number) => {
     setQueryPage(queryPage);
@@ -38,6 +40,8 @@ const StoreProvider = (props: StoreProviderProps) => {
         cardsLimit,
         onSearch,
         updateQuery,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

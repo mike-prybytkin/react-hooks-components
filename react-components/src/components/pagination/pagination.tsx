@@ -25,7 +25,7 @@ const Pagination = () => {
   };
 
   const changePage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const pageNumber = Number((event.target as HTMLElement).textContent);
+    const pageNumber = Number(event.currentTarget.textContent);
     updateQuery(pageNumber);
     setCurrentPage(pageNumber);
   };

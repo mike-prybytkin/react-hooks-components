@@ -17,4 +17,6 @@ export interface IStoreProviderContext {
   cardsLimit: number;
   data: IProductCard[];
   setData: React.Dispatch<React.SetStateAction<IProductCard[]>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }

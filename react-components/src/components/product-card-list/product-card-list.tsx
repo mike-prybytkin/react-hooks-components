@@ -6,7 +6,7 @@ import { StoreProviderContext } from 'components/store/store-provider';
 
 const ProductCardList = () => {
   const context = useContext(StoreProviderContext);
-  const { data } = context;
+  const { data, isLoading } = context;
   const renderCards = () => {
     return data.map((card) => (
       <ProductCard buttonText={mockText.productCardButton} card={card} key={card.id} />
@@ -19,9 +19,9 @@ const ProductCardList = () => {
       <div className="cards-wrapper">{renderCards()}</div>
       <Pagination />
     </React.Fragment>
-  ) : (
+  ) : !isLoading ? (
     <p className="not-found-items-message">{mockText.itemNotFound}</p>
-  );
+  ) : null;
 };
 
 export default ProductCardList;

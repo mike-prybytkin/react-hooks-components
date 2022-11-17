@@ -13,9 +13,9 @@ export const AppContext = createContext({} as IAppContext);
 
 const App = () => {
   const context = useContext(StoreProviderContext);
-  const { setData, querySearch, queryPage, setQueryPage, setAllPages } = context;
+  const { setData, querySearch, queryPage, setQueryPage, setAllPages, isLoading, setIsLoading } =
+    context;
 
-  const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<unknown>('');
 
   const getFetchUrl = useCallback(() => {
@@ -41,7 +41,7 @@ const App = () => {
       }
     }
     fetchData();
-  }, [getFetchUrl, setAllPages, setData, setQueryPage]);
+  }, [getFetchUrl, setAllPages, setData, setIsLoading, setQueryPage]);
 
   useEffect(() => {
     console.log(fetchError);
