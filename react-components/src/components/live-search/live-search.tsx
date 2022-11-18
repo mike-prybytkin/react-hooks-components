@@ -47,6 +47,7 @@ class LiveSearch extends React.Component<LiveSearchProps, LiveSearchState> {
               placeholder={this.props.placeholderText}
               value={this.state.value}
               onChange={this.searchTextChange}
+              aria-label="search-input"
             />
           </form>
         </div>

@@ -12,6 +12,7 @@ exports[`Live Search component should create snapshot 1`] = `
         🔍
       </span>
       <input
+        aria-label="search-input"
         class="search"
         placeholder="Search..."
         value=""

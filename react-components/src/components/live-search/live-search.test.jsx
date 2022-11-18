@@ -1,15 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import LiveSearch from './live-search';
 import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
 
+const onSearch = jest.fn();
 const setUp = () =>
   render(
     <LiveSearch
       cards={mockCards}
-      onSearch={mockCards}
+      onSearch={onSearch}
       placeholderText={mockText.searchPlaceholder}
     />,
     {
@@ -33,5 +34,12 @@ describe('Live Search component', () => {
   it('should create snapshot', () => {
     const { asFragment } = setUp();
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should enter the given text', () => {
+    setUp();
+    const input = screen.getByLabelText('search-input');
+    fireEvent.change(input, { target: { value: 'test' } });
+    expect(input.value).toBe('test');
   });
 });
