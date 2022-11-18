@@ -5,13 +5,15 @@ import App from './app';
 import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve({ mockCards }),
-  })
-);
-
-const setUp = () => render(<App />, { wrapper: BrowserRouter });
+const setUp = () => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({ results: mockCards }),
+      status: 200,
+    })
+  );
+  return render(<App />, { wrapper: BrowserRouter });
+};
 
 describe('App', () => {
   it('should correctly render app structure', async () => {
