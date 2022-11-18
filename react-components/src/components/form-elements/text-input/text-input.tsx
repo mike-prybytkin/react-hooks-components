@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TextInputProps } from './types';
 
-class TextInput extends Component<TextInputProps> {
-  render() {
-    return (
-      <div className="text-input">
-        <label className="text-input__label">
-          {this.props.labelType}
-          <input
-            className="text-input__input"
-            type="text"
-            placeholder={this.props.placeholderText}
-            minLength={+this.props.minTextLength}
-            maxLength={+this.props.maxTextLength}
-            required={this.props.required}
-            ref={this.props.inputTextRef}
-            id={this.props.id}
-          />
-        </label>
-      </div>
-    );
-  }
-}
+const TextInput = (props: TextInputProps) => {
+  const { labelType, placeholderText, minTextLength, maxTextLength, required, inputTextRef, id } =
+    props;
+  return (
+    <div className="text-input">
+      <label className="text-input__label">
+        {labelType}
+        <input
+          className="text-input__input"
+          type="text"
+          placeholder={placeholderText}
+          minLength={+minTextLength}
+          maxLength={+maxTextLength}
+          required={required}
+          ref={inputTextRef}
+          id={id}
+        />
+      </label>
+    </div>
+  );
+};
 
 export default TextInput;
