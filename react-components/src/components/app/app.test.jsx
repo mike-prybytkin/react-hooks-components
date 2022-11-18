@@ -6,12 +6,6 @@ import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
 import { StoreProviderContext } from '../store/store-provider';
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve({ mockCards }),
-  })
-);
-
 const setUp = () => {
   const onSearch = jest.fn();
   const updateQuery = jest.fn();
@@ -19,13 +13,20 @@ const setUp = () => {
   const setQueryPage = jest.fn();
   const setAllPages = jest.fn();
   const setIsLoading = jest.fn();
+
+  const mockData = (global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({ data: mockCards }),
+    })
+  ));
+
   return render(
     <StoreProviderContext.Provider
       value={{
         onSearch,
         updateQuery,
-        data: mockCards,
         setData,
+        data: mockData,
         setQueryPage,
         setAllPages,
         setIsLoading,
@@ -43,6 +44,7 @@ describe('App', () => {
   it('should correctly render app structure', async () => {
     const { findByTestId } = setUp();
     const appNode = await findByTestId('app');
+    screen.debug();
     expect(appNode.children).toHaveLength(2);
   });
 
