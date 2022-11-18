@@ -16,7 +16,8 @@ const setUp = () => {
 
   const mockData = (global.fetch = jest.fn(() =>
     Promise.resolve({
-      json: () => Promise.resolve({ data: mockCards }),
+      json: () => Promise.resolve({ results: mockCards }),
+      status: 200,
     })
   ));
 
