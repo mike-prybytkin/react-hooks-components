@@ -9,7 +9,11 @@ class UserCardList extends Component<UserCardListProps> {
     ));
   }
   render() {
-    return <div className="user-cards-wrapper">{this.renderCards()}</div>;
+    return (
+      <div className="user-cards-wrapper" data-testid="user-cards-wrapper">
+        {this.renderCards()}
+      </div>
+    );
   }
 }
 
