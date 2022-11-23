@@ -6,12 +6,14 @@ import mockText from 'mocks/text';
 const setUp = () =>
   render(
     <Switcher
-      switcherRef={undefined}
       switcherType={mockText.switcherGender}
       optionOne={mockText.switcherGenderMale}
       optionTwo={mockText.switcherGenderFemale}
       idRadioOne={'one'}
       idRadioTwo={'two'}
+      name={'gender'}
+      register={jest.fn()}
+      required
     />
   );
 

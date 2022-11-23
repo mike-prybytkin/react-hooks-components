@@ -4,7 +4,9 @@ import { UserCardListProps } from './types';
 
 const UserCardList = (props: UserCardListProps) => {
   const renderCards = () => {
-    return props.cards.map((card) => <UserCard card={card} key={card.avatarPath.slice(30, 70)} />);
+    return props.cards.map((card, i) => (
+      <UserCard card={card} key={card.name + card.birthday + i} />
+    ));
   };
 
   return (

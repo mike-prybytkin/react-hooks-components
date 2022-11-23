@@ -5,7 +5,7 @@ import FileUpload from './file-upload';
 
 const setUp = () => {
   return render(
-    <FileUpload labelType={mockText.labelFileUpload} fileUploadRef={undefined} id={'test'} />
+    <FileUpload labelType={mockText.labelFileUpload} id={'test'} register={jest.fn()} />
   );
 };
 

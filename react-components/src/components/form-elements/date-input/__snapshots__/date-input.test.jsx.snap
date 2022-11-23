@@ -12,7 +12,6 @@ exports[`DateInput component should create snapshot 1`] = `
       <input
         class="date-input__input"
         id="test"
-        type="date"
         value="2000-01-01"
       />
     </label>

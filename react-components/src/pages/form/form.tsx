@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FormProps } from './types';
 import CreateUserForm from 'components/user-creating-form/user-creating-form';
 import UserCardList from 'components/user-card-list/user-card-list';
@@ -6,11 +6,7 @@ import { getItemLocalSrorage, setItemLocalSrorage } from 'utils/localStorage/loc
 import { IUserCard } from 'share/types';
 
 const Form = (props: FormProps) => {
-  const [userCards, setUserCards] = useState<IUserCard[]>([]);
-
-  useEffect(() => {
-    setUserCards(getItemLocalSrorage('createdUsers'));
-  }, []);
+  const [userCards, setUserCards] = useState<IUserCard[]>(getItemLocalSrorage('createdUsers'));
 
   const onForm = (newUser: IUserCard) => {
     setItemLocalSrorage('createdUsers', newUser);

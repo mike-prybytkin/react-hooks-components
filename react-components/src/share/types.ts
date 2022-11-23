@@ -25,5 +25,16 @@ export interface IUserCard {
   salary: string;
   gender: string;
   mailing: boolean;
-  avatarPath: string;
+  avatarPath?: string;
 }
+
+export interface IUserCreatingForm {
+  name: string;
+  birthday: string;
+  salary: string;
+  gender: string;
+  mailing: boolean;
+  avatarPath: FileList;
+}
+
+export type FieldName = keyof IUserCreatingForm;

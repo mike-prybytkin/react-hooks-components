@@ -9,44 +9,22 @@ exports[`Select component should create snapshot 1`] = `
       class="select__label"
     >
       Your monthly income:
+      <i>
+        *
+      </i>
       <select
         class="select__select"
         id="test"
       >
         <option
-          disabled=""
+          value="test-1"
         >
-          Please choose an option
+          test-1
         </option>
         <option
-          value="less than 100$"
+          value="test-2"
         >
-          less than 100$
-        </option>
-        <option
-          value="100-199$"
-        >
-          100-199$
-        </option>
-        <option
-          value="200-299$"
-        >
-          200-299$
-        </option>
-        <option
-          value="300-399$"
-        >
-          300-399$
-        </option>
-        <option
-          value="400-499$"
-        >
-          400-499$
-        </option>
-        <option
-          value="over 500$"
-        >
-          over 500$
+          test-2
         </option>
       </select>
     </label>

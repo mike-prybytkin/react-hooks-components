@@ -2,20 +2,24 @@ import React from 'react';
 import { FileUploadProps } from './types';
 
 const FileUpload = (props: FileUploadProps) => {
-  const { id, fileUploadRef, required, labelType } = props;
+  const { id, required, labelType, name, register, type, validationSchema, errors } = props;
   return (
     <div className="file-upload">
       <label className="file-upload__label">
+        <p className="file-upload__label-text">
+          {labelType}
+          {required && <i>*</i>}
+        </p>
         <input
           className="file-upload__input"
-          type="file"
+          type={type}
           id={id}
-          name={id}
           accept="image/*"
-          ref={fileUploadRef}
-          required={required}
+          {...register(name, validationSchema)}
         />
-        {labelType}
+        {errors && errors[name]?.type === 'required' && (
+          <span className="error">{errors[name]?.message}</span>
+        )}
       </label>
     </div>
   );

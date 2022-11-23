@@ -2,22 +2,38 @@ import React from 'react';
 import { TextInputProps } from './types';
 
 const TextInput = (props: TextInputProps) => {
-  const { labelType, placeholderText, minTextLength, maxTextLength, required, inputTextRef, id } =
-    props;
+  const {
+    type,
+    name,
+    id,
+    labelType,
+    placeholderText,
+    errors,
+    register,
+    validationSchema,
+    required,
+  } = props;
   return (
     <div className="text-input">
-      <label className="text-input__label">
+      <label className="text-input__label" htmlFor={name}>
         {labelType}
+        {required && <i>*</i>}
         <input
           className="text-input__input"
-          type="text"
+          type={type}
           placeholder={placeholderText}
-          minLength={+minTextLength}
-          maxLength={+maxTextLength}
-          required={required}
-          ref={inputTextRef}
           id={id}
+          {...register(name, validationSchema)}
         />
+        {errors && errors[name]?.type === 'required' && (
+          <span className="error">{errors[name]?.message}</span>
+        )}
+        {errors && errors[name]?.type === 'minLength' && (
+          <span className="error">{errors[name]?.message}</span>
+        )}
+        {errors && errors[name]?.type === 'maxLength' && (
+          <span className="error">{errors[name]?.message}</span>
+        )}
       </label>
     </div>
   );

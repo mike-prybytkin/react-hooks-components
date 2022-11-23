@@ -8,8 +8,8 @@ const setUp = () => {
     <DateInput
       labelType={mockText.labelUserBirthday}
       defaultValue="2000-01-01"
-      inputDateRef={undefined}
       id={'test'}
+      register={jest.fn()}
     />
   );
 };
