@@ -1,4 +1,4 @@
-import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 import { IUserCreatingForm, FieldName } from 'share/types';
 
 export interface TextInputProps {
