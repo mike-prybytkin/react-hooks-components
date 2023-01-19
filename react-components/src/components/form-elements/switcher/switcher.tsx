@@ -1,33 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { SwitcherProps } from './types';
 
-class Switcher extends Component<SwitcherProps> {
-  render() {
-    return (
-      <div className="switcher-wrapper">
-        <p className="switcher-wrapper__header">{this.props.switcherType}</p>
-        <div className="switcher-wrapper__field">
-          <input
-            type="radio"
-            id={this.props.idRadioOne}
-            name="switch-one"
-            value={this.props.optionOne}
-            ref={this.props.switcherRef}
-            defaultChecked
-          />
-          <label htmlFor={this.props.idRadioOne}>{this.props.optionOne}</label>
+const Switcher = (props: SwitcherProps) => {
+  const { switcherType, idRadioOne, optionOne, idRadioTwo, optionTwo, register, name, required } =
+    props;
+  return (
+    <div className="switcher-wrapper">
+      <p className="switcher-wrapper__header">
+        {switcherType}
+        {required && <i>*</i>}
+      </p>
+      <div className="switcher-wrapper__field">
+        <input type="radio" id={idRadioOne} value={optionOne} defaultChecked {...register(name)} />
+        <label htmlFor={idRadioOne}>{optionOne}</label>
 
-          <input
-            type="radio"
-            id={this.props.idRadioTwo}
-            name="switch-one"
-            value={this.props.optionTwo}
-          />
-          <label htmlFor={this.props.idRadioTwo}>{this.props.optionTwo}</label>
-        </div>
+        <input type="radio" id={idRadioTwo} {...register(name)} value={optionTwo} />
+        <label htmlFor={idRadioTwo}>{optionTwo}</label>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Switcher;

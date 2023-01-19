@@ -1,21 +1,80 @@
-import React from 'react';
-import { ProductCardProps } from './types';
+import React, { useState } from 'react';
+import { ProductCardProps, IClikedCard } from './types';
+import ModalWindow from 'components/modal-window/modal-window';
 
-class ProductCard extends React.Component<ProductCardProps> {
-  constructor(props: ProductCardProps) {
-    super(props);
-  }
+const ProductCard = (props: ProductCardProps) => {
+  const { card, buttonText } = props;
+  const [isOpenModalWindow, setOpenModalWindow] = useState(false);
+  const initClickedCard: IClikedCard = {
+    name: '',
+    image: '',
+    status: '',
+    gender: '',
+    species: '',
+    type: '',
+    location: {
+      name: '',
+      url: '',
+    },
+  };
+  const [clickedCard, setClickedCard] = useState(initClickedCard);
 
-  render() {
+  const markupForModalWindow = () => {
     return (
-      <div className="card">
-        <h3 className="card__title">{this.props.card.title}</h3>
-        <img className="card__img" src={this.props.card.image} alt={this.props.card.category} />
-        <p className="card__rating">{this.props.card.rating.rate} &#9733;</p>
-        <p className="card__price">{this.props.card.price} &#36;</p>
+      <div className="modal-body-wrapper">
+        <img className="modal-cart-picture" src={clickedCard.image} alt={clickedCard.name} />
+        <div className="modal-cart-items">
+          <h4 className="modal-cart-items__name">{clickedCard.name}</h4>
+          <p className="modal-cart-items__status">
+            <span>Status: </span>
+            {clickedCard.status}
+          </p>
+          <p className="modal-cart-items__species">
+            <span>Species: </span>
+            {clickedCard.species}
+          </p>
+          <p className="modal-cart-items__type">
+            <span>Type: </span>
+            {clickedCard.type ? clickedCard.type : '---'}
+          </p>
+          <p className="modal-cart-items__gender">
+            <span>Gender: </span>
+            {clickedCard.gender}
+          </p>
+          <p className="modal-cart-items__location">
+            <span>Location: </span>
+            {clickedCard.location.name}
+          </p>
+        </div>
       </div>
     );
-  }
-}
+  };
+
+  const buttonHandler = () => {
+    setClickedCard(card);
+    setOpenModalWindow(true);
+  };
+
+  const onModalWindow = () => {
+    setOpenModalWindow(false);
+  };
+
+  return (
+    <React.Fragment>
+      <div className="card">
+        <img className="card__img" src={card.image} alt={card.image} />
+        <div className="card__wrapper-title">
+          <h3 className="card__wrapper-title-text">{card.name}</h3>
+        </div>
+        <button className="card__button" onClick={buttonHandler}>
+          {buttonText}
+        </button>
+      </div>
+      {isOpenModalWindow && (
+        <ModalWindow onModalWindow={onModalWindow}>{markupForModalWindow()}</ModalWindow>
+      )}
+    </React.Fragment>
+  );
+};
 
 export default ProductCard;

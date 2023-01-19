@@ -60,6 +60,7 @@ exports[`Testing Application should renders correctly application 1`] = `
           🔍
         </span>
         <input
+          aria-label="search-input"
           className="search"
           onChange={[Function]}
           placeholder="Search..."
@@ -72,11 +73,8 @@ exports[`Testing Application should renders correctly application 1`] = `
     className="main"
   >
     <h1>
-      Welcome to our store!
+      Welcome to us!
     </h1>
-    <div
-      className="cards-wrapper"
-    />
     <p
       className="main__message_loading"
     >

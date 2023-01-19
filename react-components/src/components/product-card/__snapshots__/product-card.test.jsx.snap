@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard component create modal window snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <img
+      alt="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+      class="card__img"
+      src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+    />
+    <div
+      class="card__wrapper-title"
+    >
+      <h3
+        class="card__wrapper-title-text"
+      >
+        Rick Sanchez
+      </h3>
+    </div>
+    <button
+      class="card__button"
+    >
+      button
+    </button>
+  </div>
+</DocumentFragment>
+`;

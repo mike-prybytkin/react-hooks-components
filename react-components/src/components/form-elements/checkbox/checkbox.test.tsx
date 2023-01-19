@@ -5,7 +5,13 @@ import Checkbox from './checkbox';
 
 const setUp = () => {
   return render(
-    <Checkbox labelType={mockText.labelUserMailing} checkboxRef={undefined} id={'test'} />
+    <Checkbox
+      labelType={mockText.labelUserMailing}
+      id={'test'}
+      register={jest.fn()}
+      name={'mailing'}
+      required={false}
+    />
   );
 };
 

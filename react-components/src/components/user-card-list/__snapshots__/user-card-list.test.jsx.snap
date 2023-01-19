@@ -25,7 +25,7 @@ exports[`UserCardList component create card list snapshot with data 1`] = `
         <span
           class="item-name"
         >
-          sex:
+          sex: 
         </span>
          Male
       </p>
@@ -35,7 +35,7 @@ exports[`UserCardList component create card list snapshot with data 1`] = `
         <span
           class="item-name"
         >
-          b-day:
+          b-day: 
         </span>
          12-08-1995
       </p>
@@ -77,7 +77,7 @@ exports[`UserCardList component create card list snapshot with data 1`] = `
         <span
           class="item-name"
         >
-          sex:
+          sex: 
         </span>
          Female
       </p>
@@ -87,7 +87,7 @@ exports[`UserCardList component create card list snapshot with data 1`] = `
         <span
           class="item-name"
         >
-          b-day:
+          b-day: 
         </span>
          01-12-2003
       </p>

@@ -6,19 +6,32 @@ import mockText from 'mocks/text';
 const setUp = () =>
   render(
     <TextInput
-      labelType={mockText.labelUserName}
-      inputTextRef={undefined}
+      type={'text'}
       placeholderText={mockText.placeholderUserName}
-      minTextLength="2"
-      maxTextLength="12"
-      required={true}
       id={'test'}
+      labelType={mockText.labelUserName}
+      required={true}
+      name={'name'}
+      errors={{ userName: undefined }}
+      register={jest.fn()}
+      validationSchema={{
+        required: '',
+        minLength: {
+          value: 0,
+          message: '',
+        },
+        maxLength: {
+          value: 0,
+          message: '',
+        },
+      }}
     />
   );
 
 describe('TextInput component', () => {
   it('should correctly render input', () => {
     setUp();
+    screen.debug();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
