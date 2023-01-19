@@ -31,7 +31,7 @@ const mockText = {
   subscribed: 'Subscribed',
   unsubscribed: 'Unsubscribed',
   toMailings: 'to mailings!',
-  fromMailings: 'from mailings...',
+  fromMailings: 'from mailings',
 };
 
 export default mockText;
