@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileUpload component should create snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="file-upload"
+  >
+    <label
+      class="file-upload__label"
+    >
+      <input
+        accept="image/*"
+        class="file-upload__input"
+        id="test"
+        name="test"
+        type="file"
+      />
+      Add your photo
+    </label>
+  </div>
+</DocumentFragment>
+`;
