@@ -77,11 +77,6 @@ exports[`App should create snapshot 1`] = `
       >
         Sorry, item not found...
       </p>
-      <p
-        class="main__message_loading"
-      >
-        Loading ...
-      </p>
     </main>
   </div>
 </DocumentFragment>

@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { DateInputProps } from './types';
 
-class DateInput extends Component<DateInputProps> {
-  render() {
-    return (
-      <div className="date-input">
-        <label className="date-input__label">
-          {this.props.labelType}
-          <input
-            className="date-input__input"
-            type="date"
-            defaultValue={this.props.defaultValue}
-            min={this.props.minDate}
-            max={this.props.maxDate}
-            ref={this.props.inputDateRef}
-            id={this.props.id}
-          />
-        </label>
-      </div>
-    );
-  }
-}
+const DateInput = (props: DateInputProps) => {
+  const { type, name, id, labelType, register, defaultValue, minDate, maxDate, required } = props;
+  return (
+    <div className="date-input">
+      <label className="date-input__label" htmlFor={name}>
+        {labelType}
+        {required && <i>*</i>}
+        <input
+          className="date-input__input"
+          type={type}
+          defaultValue={defaultValue}
+          min={minDate}
+          max={maxDate}
+          id={id}
+          {...register(name)}
+        />
+      </label>
+    </div>
+  );
+};
 
 export default DateInput;

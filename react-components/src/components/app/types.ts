@@ -1,15 +1,5 @@
 import { IProductCard } from 'share/types';
 
-export interface AppState {
-  data: IProductCard[];
-  isLoading: boolean;
-  fetchError: unknown;
-  querySearch: string;
-  queryPage: number;
-  allPages: number;
-  cardsLimit: number;
-}
-
 export interface IFetchData {
   info: {
     count: number;
@@ -18,4 +8,12 @@ export interface IFetchData {
     prev: string | null;
   };
   results: IProductCard[];
+}
+
+export interface IAppContext {
+  onSearch: (querySearch: string) => void;
+  updateQuery: (querySearch: number) => void;
+  queryPage: number;
+  allPages: number;
+  cardsLimit: number;
 }

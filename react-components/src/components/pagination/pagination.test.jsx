@@ -1,12 +1,16 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Pagination from './pagination';
+import { StoreProviderContext } from '../store/store-provider';
 
-const mockCallback = jest.fn();
-const setUp = (page, allPages) =>
-  render(
-    <Pagination queryPage={page} allPages={allPages} cardsLimit={20} updateQuery={mockCallback} />
+const setUp = (page, allPages) => {
+  const updateQuery = jest.fn();
+  return render(
+    <StoreProviderContext.Provider value={{ updateQuery, queryPage: page, allPages: allPages }}>
+      <Pagination />
+    </StoreProviderContext.Provider>
   );
+};
 
 describe('Pagination component', () => {
   it('pagination should not render if one page is rendered', () => {

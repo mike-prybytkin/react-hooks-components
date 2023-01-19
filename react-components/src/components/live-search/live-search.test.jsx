@@ -2,21 +2,21 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import LiveSearch from './live-search';
-import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
+import { StoreProviderContext } from '../store/store-provider';
 
-const onSearch = jest.fn();
-const setUp = () =>
-  render(
-    <LiveSearch
-      cards={mockCards}
-      onSearch={onSearch}
-      placeholderText={mockText.searchPlaceholder}
-    />,
+const setUp = () => {
+  const onSearch = jest.fn();
+  const updateQuery = jest.fn();
+  return render(
+    <StoreProviderContext.Provider value={{ onSearch, updateQuery }}>
+      <LiveSearch placeholderText={mockText.searchPlaceholder} />
+    </StoreProviderContext.Provider>,
     {
       wrapper: BrowserRouter,
     }
   );
+};
 
 describe('Live Search component', () => {
   it('should correctly render input', () => {

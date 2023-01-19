@@ -1,6 +1,8 @@
 .file-upload {
   .file-upload__label {
     cursor: pointer;
+    position: relative;
+
     .file-upload__input {
       margin-right: 5px;
       cursor: pointer;
@@ -12,5 +14,18 @@
         box-shadow: 0px 0px 5px 2px $shadowColor;
       }
     }
+
+    .file-upload__label-text {
+      margin: 0;
+      padding: 0;
+    }
+
+    .error {
+      display: inline-block;
+      color: $errorColor;
+      position: absolute;
+      left: 0;
+      bottom: -20px;
+    }  
   }
 }

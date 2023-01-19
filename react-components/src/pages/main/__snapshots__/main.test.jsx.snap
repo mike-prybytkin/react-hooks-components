@@ -16,11 +16,15 @@ exports[`Main component should create snapshot 1`] = `
         class="card__img"
         src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
       />
-      <h3
-        class="card__title"
+      <div
+        class="card__wrapper-title"
       >
-        Rick Sanchez
-      </h3>
+        <h3
+          class="card__wrapper-title-text"
+        >
+          Rick Sanchez
+        </h3>
+      </div>
       <button
         class="card__button"
       >
@@ -35,11 +39,15 @@ exports[`Main component should create snapshot 1`] = `
         class="card__img"
         src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
       />
-      <h3
-        class="card__title"
+      <div
+        class="card__wrapper-title"
       >
-        Morty Smith
-      </h3>
+        <h3
+          class="card__wrapper-title-text"
+        >
+          Morty Smith
+        </h3>
+      </div>
       <button
         class="card__button"
       >

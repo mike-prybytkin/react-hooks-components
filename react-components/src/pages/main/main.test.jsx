@@ -2,14 +2,21 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Main from './main';
-import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
+import { StoreProviderContext } from '../../components/store/store-provider';
+import { mockCards } from '../../mocks/cards';
 
-const mockCallback = jest.fn();
-const setUp = () =>
-  render(<Main cards={mockCards} heading={mockText.headingMain} updateQuery={mockCallback} />, {
-    wrapper: BrowserRouter,
-  });
+const setUp = () => {
+  const updateQuery = jest.fn();
+  return render(
+    <StoreProviderContext.Provider value={{ updateQuery, data: mockCards }}>
+      <Main heading={mockText.headingMain} />
+    </StoreProviderContext.Provider>,
+    {
+      wrapper: BrowserRouter,
+    }
+  );
+};
 
 describe('Main component', () => {
   it('should correctly render heading', () => {

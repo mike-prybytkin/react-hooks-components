@@ -2,11 +2,21 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './header';
-import { mockCards } from '../../mocks/cards';
 import mockText from '../../mocks/text';
+import { StoreProviderContext } from '../store/store-provider';
 
-const setUp = () =>
-  render(<Header cards={mockCards} onSearch={mockCards} />, { wrapper: BrowserRouter });
+const setUp = () => {
+  const onSearch = jest.fn();
+  const updateQuery = jest.fn();
+  return render(
+    <StoreProviderContext.Provider value={{ onSearch, updateQuery }}>
+      <Header />
+    </StoreProviderContext.Provider>,
+    {
+      wrapper: BrowserRouter,
+    }
+  );
+};
 
 describe('Header component', () => {
   it('should render links container', () => {

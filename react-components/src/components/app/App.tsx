@@ -1,127 +1,81 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback, createContext, useContext } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import AboutUs from 'pages/about-us/about-us';
 import Page404 from 'pages/404/404';
 import Main from 'pages/main/main';
 import Header from 'components/header/header';
-import { AppState } from './types';
 import mockText from 'mocks/text';
 import Form from 'pages/form/form';
-import { IFetchData } from './types';
+import { IFetchData, IAppContext } from './types';
+import { StoreProviderContext } from 'components/store/store-provider';
+import API from 'api/api';
 
-class App extends React.Component<unknown, AppState> {
-  constructor(props: unknown) {
-    super(props);
-    this.state = {
-      data: [],
-      isLoading: false,
-      fetchError: '',
-      querySearch: '',
-      queryPage: 1,
-      allPages: 0,
-      cardsLimit: 20,
+export const AppContext = createContext({} as IAppContext);
+
+const App = () => {
+  const context = useContext(StoreProviderContext);
+  const { setData, querySearch, queryPage, setQueryPage, setAllPages, isLoading, setIsLoading } =
+    context;
+
+  const [fetchError, setFetchError] = useState<unknown>('');
+
+  const getFetchData = useCallback(() => {
+    return API(querySearch, queryPage);
+  }, [querySearch, queryPage]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const fetchData: IFetchData = await getFetchData();
+        setData(fetchData.results);
+        setAllPages(fetchData.info.pages);
+        setIsLoading(false);
+      } catch (error) {
+        setFetchError(error);
+        setData([]);
+        setIsLoading(false);
+        setQueryPage(1);
+      }
     };
-  }
+    fetchData();
+  }, [getFetchData, setAllPages, setData, setIsLoading, setQueryPage]);
 
-  async fetchData() {
-    const BASE_URL = `https://rickandmortyapi.com/api/character/`;
-    this.setState({ isLoading: true });
-    try {
-      const response = await fetch(
-        `${BASE_URL}?name=${this.state.querySearch}&page=${this.state.queryPage}`
-      );
-      const fetchData: IFetchData = await response.json();
-      this.setState({
-        data: fetchData.results,
-        allPages: fetchData.info.pages,
-        isLoading: false,
-      });
-    } catch (error) {
-      this.setState({
-        data: [],
-        fetchError: error,
-        isLoading: false,
-        queryPage: 1,
-      });
-    }
-  }
+  useEffect(() => {
+    console.log(fetchError);
+  }, [fetchError]);
 
-  updateQuery = (queryPage: number) => {
-    this.setState({
-      queryPage: queryPage,
-    });
-  };
-
-  onSearch = (querySearch: string) => {
-    this.setState({
-      querySearch: querySearch,
-    });
-  };
-
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  componentDidUpdate(prevProps: Readonly<unknown>, prevState: Readonly<AppState>): void {
-    if (
-      prevState.querySearch !== this.state.querySearch ||
-      prevState.queryPage !== this.state.queryPage
-    ) {
-      this.fetchData();
-    }
-  }
-
-  render() {
-    const { isLoading } = this.state;
-    return (
-      <div className="App" data-testid="app">
-        <Header onSearch={this.onSearch} />
-        <main className="main">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  cards={this.state.data}
-                  heading={mockText.headingMain}
-                  queryPage={this.state.queryPage}
-                  allPages={this.state.allPages}
-                  cardsLimit={this.state.cardsLimit}
-                  updateQuery={this.updateQuery}
-                />
-              }
-            />
-            <Route
-              path="/about"
-              element={
-                <AboutUs heading={mockText.headingAboutUs} message={mockText.pageNotReady} />
-              }
-            />
-            <Route
-              path="/form"
-              element={
-                <Form
-                  heading={mockText.headingForm}
-                  noCreatedUserMessage={mockText.notCreatedUserInForm}
-                />
-              }
-            />
-            <Route
-              path="/notFound"
-              element={
-                <Page404
-                  heading={mockText.heading404}
-                  backToHomelinkText={mockText.linkBackToHome}
-                />
-              }
-            />
-            <Route path="/*" element={<Navigate to="/notFound" />} />
-          </Routes>
-          {isLoading && <p className="main__message_loading">{mockText.loading}</p>}
-        </main>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="App" data-testid="app">
+      <Header />
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<Main heading={mockText.headingMain} />} />
+          <Route
+            path="/about"
+            element={<AboutUs heading={mockText.headingAboutUs} message={mockText.pageNotReady} />}
+          />
+          <Route
+            path="/form"
+            element={
+              <Form
+                heading={mockText.headingForm}
+                noCreatedUserMessage={mockText.notCreatedUserInForm}
+              />
+            }
+          />
+          <Route
+            path="/notFound"
+            element={
+              <Page404 heading={mockText.heading404} backToHomelinkText={mockText.linkBackToHome} />
+            }
+          />
+          <Route path="/*" element={<Navigate to="/notFound" />} />
+        </Routes>
+        {isLoading && <p className="main__message_loading">{mockText.loading}</p>}
+      </main>
+    </div>
+  );
+};
 
 export default App;

@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CheckboxProps } from './types';
 
-class Checkbox extends Component<CheckboxProps> {
-  render() {
-    return (
-      <div className="checkbox">
-        <input
-          className="checkbox__input"
-          type="checkbox"
-          id={this.props.id}
-          ref={this.props.checkboxRef}
-          defaultChecked
-        />
-        <label className="checkbox__label" htmlFor={this.props.id}>
-          {this.props.labelType}
-        </label>
-      </div>
-    );
-  }
-}
+const Checkbox = (props: CheckboxProps) => {
+  const { id, labelType, name, register, required } = props;
+  return (
+    <div className="checkbox">
+      <input
+        className="checkbox__input"
+        type="checkbox"
+        id={id}
+        defaultChecked
+        {...register(name)}
+      />
+      <label className="checkbox__label" htmlFor={id}>
+        {labelType}
+        {required && <i>*</i>}
+      </label>
+    </div>
+  );
+};
 
 export default Checkbox;

@@ -10,15 +10,17 @@ exports[`User Creating Form component should create snapshot 1`] = `
     >
       <label
         class="text-input__label"
+        for="name"
       >
         Name:
+        <i>
+          *
+        </i>
         <input
           class="text-input__input"
           id="name-user-form"
-          maxlength="12"
-          minlength="2"
+          name="name"
           placeholder="Your Name"
-          required=""
           type="text"
         />
       </label>
@@ -28,13 +30,18 @@ exports[`User Creating Form component should create snapshot 1`] = `
     >
       <label
         class="date-input__label"
+        for="birthday"
       >
         Birthday:
+        <i>
+          *
+        </i>
         <input
           class="date-input__input"
           id="b-day-user-form"
           max="2022-01-01"
           min="1922-01-01"
+          name="birthday"
           type="date"
           value="2000-01-01"
         />
@@ -47,9 +54,13 @@ exports[`User Creating Form component should create snapshot 1`] = `
         class="select__label"
       >
         Your monthly income:
+        <i>
+          *
+        </i>
         <select
           class="select__select"
           id="salary-user-form"
+          name="salary"
         >
           <option
             disabled=""
@@ -103,7 +114,7 @@ exports[`User Creating Form component should create snapshot 1`] = `
         <input
           checked=""
           id="radio-male-user-form"
-          name="switch-one"
+          name="gender"
           type="radio"
           value="Male"
         />
@@ -114,7 +125,7 @@ exports[`User Creating Form component should create snapshot 1`] = `
         </label>
         <input
           id="radio-female-user-form"
-          name="switch-one"
+          name="gender"
           type="radio"
           value="Female"
         />
@@ -132,6 +143,7 @@ exports[`User Creating Form component should create snapshot 1`] = `
         checked=""
         class="checkbox__input"
         id="mailing-user-form"
+        name="mailing"
         type="checkbox"
       />
       <label
@@ -147,15 +159,21 @@ exports[`User Creating Form component should create snapshot 1`] = `
       <label
         class="file-upload__label"
       >
+        <p
+          class="file-upload__label-text"
+        >
+          Add your photo
+          <i>
+            *
+          </i>
+        </p>
         <input
           accept="image/*"
           class="file-upload__input"
           id="avatar-user-form"
-          name="avatar-user-form"
-          required=""
+          name="avatarPath"
           type="file"
         />
-        Add your photo
       </label>
     </div>
     <input

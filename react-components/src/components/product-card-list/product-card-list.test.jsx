@@ -2,9 +2,16 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ProductCardList from './product-card-list';
 import { mockCards } from '../../mocks/cards';
+import { StoreProviderContext } from '../store/store-provider';
 
-const mockCallback = jest.fn();
-const setUp = (props) => render(<ProductCardList cards={props} updateQuery={mockCallback} />);
+const setUp = (props) => {
+  const updateQuery = jest.fn();
+  return render(
+    <StoreProviderContext.Provider value={{ updateQuery, data: props }}>
+      <ProductCardList cards={props} />
+    </StoreProviderContext.Provider>
+  );
+};
 
 describe('Card list component', () => {
   it('should render card list without data', () => {
